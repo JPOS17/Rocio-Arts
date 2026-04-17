@@ -1,12 +1,10 @@
-import { Routes, Route, useLocation } from "react-router";
+import { Routes, Route } from "react-router";
 import Home from "../pages/Home";
 import About from "../pages/About";
 import Gallery from "../pages/Gallery";
 import Contact from "../pages/Contact";
 
 const AppRoutes = () => {
-  const location = useLocation();
-
   return (
     <Routes>
       <Route path="/" element={<Home />} />
