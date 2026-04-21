@@ -7,58 +7,56 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Detect scroll to toggle solid background
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [location]);
 
-  // Hero pages where navbar starts transparent
   const isHeroPage = location.pathname === "/";
 
   return (
     <header
       className={[
-        "navbar",
-        isHeroPage && !scrolled ? "navbar--transparent" : "navbar--solid",
-        scrolled ? "navbar--scrolled" : "",
-        menuOpen ? "navbar--open" : "",
+        "nav",
+        isHeroPage && !scrolled ? "nav--transparent" : "nav--solid",
+        scrolled ? "nav--scrolled" : "",
+        menuOpen ? "nav--open" : "",
       ]
         .filter(Boolean)
         .join(" ")}
     >
-      <div className="navbar__inner container">
+      <div className="nav__inner">
         {/* Brand */}
-        <NavLink to="/" className="navbar__brand">
-          <span className="navbar__brand-name">Rocio Ortiz</span>
-          <span className="navbar__brand-sub">Studio</span>
+        <NavLink to="/" className="nav__brand">
+          <span className="nav__brand-name">Rocio Ortiz</span>
+          <span className="nav__brand-sub">Studio</span>
         </NavLink>
 
         {/* Desktop nav */}
-        <nav className="navbar__links" aria-label="Main navigation">
-          <NavLink to="/" className="navbar__link" end>
+        <nav className="nav__links" aria-label="Main navigation">
+          <NavLink to="/" className="nav__link" end>
             Home
           </NavLink>
-          <NavLink to="/about" className="navbar__link">
+          <NavLink to="/about" className="nav__link">
             About
           </NavLink>
-          <NavLink to="/gallery" className="navbar__link">
+          <NavLink to="/gallery" className="nav__link">
             Gallery
           </NavLink>
-          <NavLink to="/contact" className="navbar__link navbar__link--cta">
+          <NavLink to="/contact" className="nav__link nav__link--cta">
             Contact
           </NavLink>
         </nav>
 
         {/* Hamburger */}
         <button
-          className="navbar__hamburger"
+          className="nav__hamburger"
           onClick={() => setMenuOpen((o) => !o)}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
@@ -70,18 +68,18 @@ const Navbar = () => {
       </div>
 
       {/* Mobile drawer */}
-      <div className="navbar__drawer" aria-hidden={!menuOpen}>
-        <nav className="navbar__drawer-links" aria-label="Mobile navigation">
-          <NavLink to="/" className="navbar__drawer-link" end>
+      <div className="nav__drawer" aria-hidden={!menuOpen}>
+        <nav className="nav__drawer-links" aria-label="Mobile navigation">
+          <NavLink to="/" className="nav__drawer-link" end>
             Home
           </NavLink>
-          <NavLink to="/about" className="navbar__drawer-link">
+          <NavLink to="/about" className="nav__drawer-link">
             About
           </NavLink>
-          <NavLink to="/gallery" className="navbar__drawer-link">
+          <NavLink to="/gallery" className="nav__drawer-link">
             Gallery
           </NavLink>
-          <NavLink to="/contact" className="navbar__drawer-link">
+          <NavLink to="/contact" className="nav__drawer-link">
             Contact
           </NavLink>
         </nav>

@@ -1,11 +1,37 @@
+import "../styles/Global.css";
 import "../styles/Gallery.css";
 
-import art1 from "../assets/art1.png";
-import art2 from "../assets/art2.png";
-import art3 from "../assets/art3.png";
+// ─── Oil/Acrylic Originals ───────────────────────────────
+import art1 from "../assets/oil/art1.png";
+import art2 from "../assets/oil/art2.png";
+import art3 from "../assets/oil/art3.png";
+
+// ─── Custom Portrait Commissions ────────────────────────
+import cust1 from "../assets/customs/cust1.png";
+import cust2 from "../assets/customs/cust2.png";
+import cust3 from "../assets/customs/cust3.png";
+import cust4 from "../assets/customs/cust4.png";
+import cust5 from "../assets/customs/cust5.png";
+import cust6 from "../assets/customs/cust6.png";
+import cust7 from "../assets/customs/cust7.png";
+import cust8 from "../assets/customs/cust8.png";
+import cust9 from "../assets/customs/cust9.png";
+
+// ─── Watercolor Illustrations ───────────────────────────
+import ill1 from "../assets/illustrations/ill1.png";
+import ill2 from "../assets/illustrations/ill2.png";
+import ill3 from "../assets/illustrations/ill3.png";
+import ill4 from "../assets/illustrations/ill4.png";
+import ill5 from "../assets/illustrations/ill5.png";
 
 // ─── Types ───────────────────────────────────────────────
-type Category = "All" | "Originals" | "Prints" | "Faith Series";
+type Category =
+  | "All"
+  | "Originals"
+  | "Prints"
+  | "Faith Series"
+  | "Custom Portraits"
+  | "Illustrations";
 
 interface Artwork {
   id: number;
@@ -20,6 +46,7 @@ interface Artwork {
 
 // ─── Data ────────────────────────────────────────────────
 const artworks: Artwork[] = [
+  // ── Originals (oil/acrylic on canvas) ──
   {
     id: 1,
     img: art1,
@@ -28,7 +55,7 @@ const artworks: Artwork[] = [
     size: '24" × 18"',
     category: "Faith Series",
     available: true,
-    price: "$1,200",
+    // price: "$1,200",
   },
   {
     id: 2,
@@ -38,7 +65,7 @@ const artworks: Artwork[] = [
     size: '30" × 24"',
     category: "Originals",
     available: true,
-    price: "$980",
+    // price: "$980",
   },
   {
     id: 3,
@@ -48,42 +75,148 @@ const artworks: Artwork[] = [
     size: '20" × 16"',
     category: "Originals",
     available: false,
-    price: "$740",
+    // price: "$740",
   },
-  // Placeholder slots — owner will replace img + data
+
+  // ── Custom Portraits ──
   {
     id: 4,
-    img: art1,
-    title: "Sacred Heart",
-    medium: "Acrylic on canvas",
-    size: '16" × 20"',
-    category: "Faith Series",
+    img: cust1,
+    title: "Family by the Lake",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
     available: true,
-    price: "$860",
   },
   {
     id: 5,
-    img: art2,
-    title: "Agnus Dei",
-    medium: "Oil on panel",
-    size: '12" × 12"',
-    category: "Faith Series",
+    img: cust2,
+    title: "Wedding Carriage",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
     available: true,
-    price: "$580",
   },
   {
     id: 6,
-    img: art3,
-    title: "Winter Light",
-    medium: "Oil on canvas",
-    size: '18" × 24"',
-    category: "Prints",
+    img: cust3,
+    title: "Sunset Beach Couple",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
     available: true,
-    price: "$65",
+  },
+  {
+    id: 7,
+    img: cust4,
+    title: "First Communion",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+  {
+    id: 8,
+    img: cust5,
+    title: "Sisters at the Cathedral",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+  {
+    id: 9,
+    img: cust6,
+    title: "Porch Swing",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+  {
+    id: 10,
+    img: cust7,
+    title: "Mont Saint-Michel",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+  {
+    id: 11,
+    img: cust8,
+    title: "Our Lady's Blessing",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+  {
+    id: 12,
+    img: cust9,
+    title: "First Dance",
+    medium: "Digital illustration",
+    size: "Digital",
+    category: "Custom Portraits",
+    available: true,
+  },
+
+  // ── Illustrations ──
+  {
+    id: 13,
+    img: ill1,
+    title: "Flight into Egypt",
+    medium: "Digital watercolor",
+    size: "Digital",
+    category: "Illustrations",
+    available: true,
+  },
+  {
+    id: 14,
+    img: ill2,
+    title: "Our Lady of Expectation",
+    medium: "Digital watercolor",
+    size: "Digital",
+    category: "Illustrations",
+    available: true,
+  },
+  {
+    id: 15,
+    img: ill3,
+    title: "The Good Shepherd",
+    medium: "Digital watercolor",
+    size: "Digital",
+    category: "Illustrations",
+    available: true,
+  },
+  {
+    id: 16,
+    img: ill4,
+    title: "Madonna & Child",
+    medium: "Digital watercolor",
+    size: "Digital",
+    category: "Illustrations",
+    available: true,
+  },
+  {
+    id: 17,
+    img: ill5,
+    title: "Our Lady of Grace",
+    medium: "Pastel digital",
+    size: "Digital",
+    category: "Illustrations",
+    available: true,
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "Originals", "Prints", "Faith Series"];
+const CATEGORIES: Category[] = [
+  "All",
+  "Originals",
+  "Faith Series",
+  "Custom Portraits",
+  "Illustrations",
+  "Prints",
+];
 
 // ─── Component ───────────────────────────────────────────
 import { useState } from "react";
@@ -145,7 +278,7 @@ const Gallery = () => {
           <div className="gallery-grid">
             {filtered.map((art, i) => (
               <article
-                key={art.id}
+                key={`${active}-${art.id}`}
                 className="art-card"
                 style={{ animationDelay: `${i * 0.06}s` }}
                 onClick={() => setLightbox(art)}

@@ -1,0 +1,132 @@
+/* ─────────────────────────────────────────────
+   FOOTER.CSS  —  Rocio Ortiz Studio
+───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap');
+
+/* ── SCOPED TOKENS ── */
+.foo {
+  --foo-cream:        #f8f4ef;
+  --foo-navy:         #1a2340;
+  --foo-gold-light:   #d4b483;
+  --foo-font-display: 'Cormorant Garamond', Georgia, serif;
+  --foo-font-body:    'Lato', sans-serif;
+}
+
+/* ── FOOTER SHELL ── */
+.foo {
+  background: var(--foo-navy);
+  color: rgba(248, 244, 239, 0.7);
+  padding: 4rem 0 0;
+  font-family: var(--foo-font-body);
+}
+
+/* ── INNER GRID ── */
+.foo__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(248, 244, 239, 0.1);
+}
+
+/* ── BRAND COLUMN ── */
+.foo__brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.foo__name {
+  font-family: var(--foo-font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--foo-cream);
+  margin-bottom: 0.5rem;
+}
+
+.foo__tagline {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(248, 244, 239, 0.5);
+  max-width: 220px;
+}
+
+/* ── LINK COLUMNS ── */
+.foo__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.foo__links h4 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foo-gold-light);
+  margin-bottom: 0.5rem;
+}
+
+.foo__links a {
+  font-size: 0.875rem;
+  color: rgba(248, 244, 239, 0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.foo__links a:hover { color: var(--foo-cream); }
+
+/* ── SOCIAL COLUMN ── */
+.foo__social {
+  display: flex;
+  flex-direction: column;
+}
+
+.foo__social h4 {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--foo-gold-light);
+  margin-bottom: 0.75rem;
+}
+
+.foo__ig {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: rgba(248, 244, 239, 0.65);
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+.foo__ig:hover { color: var(--foo-gold-light); }
+
+/* ── BOTTOM BAR ── */
+.foo__bottom {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.75rem;
+  color: rgba(248, 244, 239, 0.3);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  .foo__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .foo__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .foo__inner {
+    grid-template-columns: 1fr;
+  }
+}

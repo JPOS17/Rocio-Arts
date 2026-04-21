@@ -1,6 +1,7 @@
+import "../styles/Global.css";
 import "../styles/About.css";
 
-import headshot1 from "../assets/headshot1.png";
+import headshot1 from "../assets/headshots/headshot3.png";
 
 const credentials = [
   {

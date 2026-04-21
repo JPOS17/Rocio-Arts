@@ -1,9 +1,7 @@
 /* ══════════════════════════════════
-   ABOUT PAGE STYLES — Rocio Ortiz Studio
-   Tokens from Home.css :root
+   ABOUT.CSS — Rocio Ortiz Studio
 ══════════════════════════════════ */
 
-/* ── PAGE WRAPPER ── */
 .about-page {
   font-family: var(--font-body);
   background: var(--cream);
@@ -11,10 +9,11 @@
   overflow-x: hidden;
 }
 
+
 /* ══════════════════════════════════
    1. EDITORIAL HERO
 ══════════════════════════════════ */
-.about-hero {
+.about-page .about-hero {
   position: relative;
   height: 75svh;
   min-height: 520px;
@@ -23,7 +22,7 @@
   overflow: hidden;
 }
 
-.about-hero__bg {
+.about-page .about-hero__bg {
   position: absolute;
   inset: 0;
   background-size: cover;
@@ -32,7 +31,7 @@
   animation: heroZoom 16s ease-out forwards;
 }
 
-.about-hero__overlay {
+.about-page .about-hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -43,14 +42,14 @@
   );
 }
 
-.about-hero__content {
+.about-page .about-hero__content {
   position: relative;
   z-index: 2;
   padding-bottom: clamp(3rem, 6vw, 5rem);
   animation: fadeUp 1s 0.2s both;
 }
 
-.about-hero__name {
+.about-page .about-hero__name {
   font-family: var(--font-display);
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 300;
@@ -60,7 +59,7 @@
   margin-bottom: 0.6rem;
 }
 
-.about-hero__title {
+.about-page .about-hero__title {
   font-family: var(--font-body);
   font-size: 0.78rem;
   font-weight: 700;
@@ -69,19 +68,20 @@
   color: rgba(248, 244, 239, 0.65);
 }
 
+
 /* ══════════════════════════════════
    2. STORY
 ══════════════════════════════════ */
-.about-story {
+.about-page .about-story {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--white);
 }
 
-.about-story__inner {
+.about-page .about-story__inner {
   max-width: 740px;
 }
 
-.about-heading {
+.about-page .about-heading {
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 400;
@@ -90,14 +90,14 @@
   line-height: 1.2;
 }
 
-.about-body {
+.about-page .about-body {
   font-size: 1.05rem;
   line-height: 1.9;
   color: var(--text-mid);
   margin-bottom: 1.5rem;
 }
 
-.about-pull {
+.about-page .about-pull {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.45rem;
@@ -110,21 +110,22 @@
   line-height: 1.6;
 }
 
+
 /* ══════════════════════════════════
    3. CREDENTIALS
 ══════════════════════════════════ */
-.credentials {
+.about-page .credentials {
   padding: clamp(4rem, 8vw, 6rem) 0;
   background: var(--cream);
 }
 
-.cred-grid {
+.about-page .cred-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-.cred-card {
+.about-page .cred-card {
   background: var(--white);
   padding: 2rem 1.75rem;
   border-radius: var(--radius);
@@ -132,17 +133,17 @@
   transition: var(--transition);
 }
 
-.cred-card:hover {
+.about-page .cred-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
 }
 
-.cred-card__icon {
+.about-page .cred-card__icon {
   font-size: 1.75rem;
   margin-bottom: 1rem;
 }
 
-.cred-card h3 {
+.about-page .cred-card h3 {
   font-family: var(--font-display);
   font-size: 1.3rem;
   font-weight: 400;
@@ -151,62 +152,56 @@
   line-height: 1.3;
 }
 
-.cred-card p {
+.about-page .cred-card p {
   font-size: 0.9rem;
   line-height: 1.7;
   color: var(--text-mid);
 }
 
+
 /* ══════════════════════════════════
    4. VALUES
 ══════════════════════════════════ */
-.values {
+.about-page .values {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--navy);
   position: relative;
   overflow: hidden;
 }
 
-.values__texture {
+.about-page .values__texture {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-      ellipse at 20% 50%,
-      rgba(185, 144, 74, 0.08) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse at 80% 30%,
-      rgba(185, 144, 74, 0.06) 0%,
-      transparent 60%
-    );
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(185, 144, 74, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 30%, rgba(185, 144, 74, 0.06) 0%, transparent 60%);
   pointer-events: none;
 }
 
-.section-heading--light {
+.about-page .section-heading--light {
   color: var(--cream);
 }
 
-.values__grid {
+.about-page .values__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 2rem;
 }
 
-.value-item {
+.about-page .value-item {
   padding: 2rem;
   border: 1px solid rgba(248, 244, 239, 0.1);
   border-radius: var(--radius);
   transition: border-color var(--transition), background var(--transition);
 }
 
-.value-item:hover {
+.about-page .value-item:hover {
   border-color: rgba(185, 144, 74, 0.3);
   background: rgba(185, 144, 74, 0.04);
 }
 
-.value-item h3 {
+.about-page .value-item h3 {
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 400;
@@ -214,25 +209,26 @@
   margin-bottom: 0.75rem;
 }
 
-.value-item p {
+.about-page .value-item p {
   font-size: 0.95rem;
   line-height: 1.8;
   color: rgba(248, 244, 239, 0.7);
 }
 
+
 /* ══════════════════════════════════
    5. CTA
 ══════════════════════════════════ */
-.about-cta {
+.about-page .about-cta {
   padding: clamp(5rem, 10vw, 7rem) 0;
   background: var(--cream-dark);
 }
 
-.about-cta__inner {
+.about-page .about-cta__inner {
   max-width: 600px;
 }
 
-.about-cta__heading {
+.about-page .about-cta__heading {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 400;
@@ -241,36 +237,37 @@
   line-height: 1.2;
 }
 
-.about-cta__sub {
+.about-page .about-cta__sub {
   font-size: 1rem;
   line-height: 1.8;
   color: var(--text-mid);
   margin-bottom: 2rem;
 }
 
+
 /* ══════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════ */
 @media (max-width: 1024px) {
-  .cred-grid {
+  .about-page .cred-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .about-hero {
+  .about-page .about-hero {
     height: 60svh;
     min-height: 420px;
   }
 
-  .values__grid,
-  .cred-grid {
+  .about-page .values__grid,
+  .about-page .cred-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .about-hero__name {
+  .about-page .about-hero__name {
     font-size: clamp(2.5rem, 10vw, 3.5rem);
   }
 }

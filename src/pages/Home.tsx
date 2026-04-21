@@ -1,17 +1,34 @@
+import "../styles/Global.css";
 import "../styles/Home.css";
 
-// Image imports
-import art1 from "../assets/art1.png";
-import art2 from "../assets/art2.png";
-import art3 from "../assets/art3.png";
-import headshot1 from "../assets/headshot1.png";
-import headshot2 from "../assets/headshot2.png";
+// ─── Oil / Acrylic Originals ─────────────────────────────
+import art1 from "../assets/oil/art1.png";
+import art2 from "../assets/oil/art2.png";
+import art3 from "../assets/oil/art3.png";
+
+// ─── Custom Portraits ────────────────────────────────────
+import cust3 from "../assets/customs/cust3.png";
+import cust5 from "../assets/customs/cust5.png";
+import cust6 from "../assets/customs/cust6.png";
+import cust8 from "../assets/customs/cust8.png";
+
+// ─── Watercolor Illustrations ────────────────────────────
+import ill1 from "../assets/illustrations/ill1.png";
+import ill2 from "../assets/illustrations/ill2.png";
+import ill3 from "../assets/illustrations/ill3.png";
+import ill4 from "../assets/illustrations/ill4.png";
+import ill5 from "../assets/illustrations/ill5.png";
+
+// ─── Headshots ───────────────────────────────────────────
+import headshot1 from "../assets/headshots/headshot1.png";
+import headshot2 from "../assets/headshots/headshot2.png";
 
 const Home = () => {
   return (
     <div className="home">
       {/* ── 1. HERO ── */}
       <section className="hero">
+        {/* Hero background: oil painting — The Last Supper */}
         <div className="hero__bg" style={{ backgroundImage: `url(${art1})` }} />
         <div className="hero__overlay" />
         <div className="hero__content">
@@ -26,9 +43,6 @@ const Home = () => {
             God
           </p>
           <div className="hero__ctas">
-            {/* <a href="/prints" className="btn btn--light">
-              Shop Prints
-            </a> */}
             <a href="/gallery" className="btn btn--outline-light">
               View Gallery
             </a>
@@ -80,22 +94,22 @@ const Home = () => {
           <div className="collections__grid">
             {[
               {
-                img: art3,
-                title: "Prints",
-                sub: "Affordable reproductions for every space",
-                href: "/prints",
-              },
-              {
                 img: art2,
                 title: "Originals",
                 sub: "One-of-a-kind oil & acrylic paintings",
-                href: "/originals",
+                href: "/gallery",
               },
               {
-                img: art1,
-                title: "Faith Series",
-                sub: "Saints, scripture & sacred moments",
-                href: "/faith",
+                img: cust6,
+                title: "Custom Portraits",
+                sub: "Illustrated portraits of your cherished moments",
+                href: "/gallery",
+              },
+              {
+                img: ill1,
+                title: "Illustrations",
+                sub: "Soft watercolor & devotional digital art",
+                href: "/gallery",
               },
             ].map((col) => (
               <a key={col.title} href={col.href} className="collection-card">
@@ -119,7 +133,7 @@ const Home = () => {
         <div className="why__texture" />
         <div className="container why__inner">
           <div className="why__art">
-            <img src={art2} alt="Lion and Lamb painting" />
+            <img src={art3} alt="Red Cardinal" />
           </div>
           <div className="why__text">
             <span className="section-label section-label--light">
@@ -143,67 +157,65 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ── 5. BEST SELLERS ── */}
-      {/* <section className="products">
+      {/* ── 5. CUSTOM PORTRAITS SPOTLIGHT ── */}
+      <section className="collections">
         <div className="container">
-          <span className="section-label">Shop</span>
-          <h2 className="section-heading">Best Sellers</h2>
-          <div className="products__grid">
+          <span className="section-label">Custom Work</span>
+          <h2 className="section-heading">Portraits Made for You</h2>
+          <p
+            style={{
+              textAlign: "center",
+              maxWidth: "560px",
+              margin: "0 auto 2.5rem",
+              color: "var(--text-mid, #666)",
+              lineHeight: 1.7,
+            }}
+          >
+            Every family, wedding, and milestone deserves to be remembered
+            beautifully. Commission a custom illustrated portrait — a
+            one-of-a-kind gift that lasts a lifetime.
+          </p>
+          <div className="collections__grid">
             {[
               {
-                img: art1,
-                title: "The Last Supper",
-                price: "$45",
-                tag: "Print",
+                img: cust8,
+                title: "Wedding Portraits",
+                sub: "Celebrate your vows with a keepsake illustration",
+                href: "/gallery",
               },
               {
-                img: art2,
-                title: "Lion & the Lamb",
-                price: "$380",
-                tag: "Original",
+                img: cust3,
+                title: "Couples & Families",
+                sub: "Capture a treasured moment together",
+                href: "/gallery",
               },
               {
-                img: art3,
-                title: "Cardinal in Winter",
-                price: "$55",
-                tag: "Print",
+                img: cust5,
+                title: "Special Occasions",
+                sub: "First communions, graduations & more",
+                href: "/gallery",
               },
-              {
-                img: art1,
-                title: "The Last Supper — Large",
-                price: "$95",
-                tag: "Print",
-              },
-              {
-                img: art2,
-                title: "Lion & the Lamb — Small",
-                price: "$35",
-                tag: "Print",
-              },
-              {
-                img: art3,
-                title: "Cardinal — Giclée",
-                price: "$65",
-                tag: "Print",
-              },
-            ].map((p, i) => (
-              <div key={i} className="product-card">
-                <div className="product-card__img-wrap">
-                  <span className="product-card__tag">{p.tag}</span>
-                  <img src={p.img} alt={p.title} />
+            ].map((col) => (
+              <a key={col.title} href={col.href} className="collection-card">
+                <div className="collection-card__img-wrap">
+                  <img src={col.img} alt={col.title} />
+                  <div className="collection-card__overlay" />
                 </div>
-                <div className="product-card__info">
-                  <h4>{p.title}</h4>
-                  <p className="product-card__price">{p.price}</p>
-                  <button className="btn btn--dark btn--sm">
-                    View Product
-                  </button>
+                <div className="collection-card__text">
+                  <h3>{col.title}</h3>
+                  <p>{col.sub}</p>
+                  <span className="collection-card__link">Inquire →</span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <a href="/contact" className="btn btn--dark">
+              Start a Commission
+            </a>
+          </div>
         </div>
-      </section> */}
+      </section>
 
       {/* ── 6. PROCESS ── */}
       <section className="process">
@@ -234,58 +246,51 @@ const Home = () => {
               className="process__img process__img--main"
             />
             <img
-              src={art3}
-              alt="Detail of a painting"
+              src={ill4}
+              alt="Child illustration"
               className="process__img process__img--accent"
             />
           </div>
         </div>
       </section>
 
-      {/* ── 7. TESTIMONIALS ── */}
-      {/* <section className="testimonials">
-        <div className="container">
-          <span className="section-label">Kind Words</span>
-          <h2 className="section-heading">What Collectors Say</h2>
-          <div className="testimonials__grid">
-            {[
-              {
-                quote:
-                  "This piece brought so much peace into my home. I find myself stopping just to look at it every day.",
-                name: "Maria G.",
-                location: "Houston, TX",
-              },
-              {
-                quote:
-                  "You can feel the faith behind every brushstroke. It's unlike anything I've ever bought — it's prayerful.",
-                name: "James R.",
-                location: "Austin, TX",
-              },
-              {
-                quote:
-                  "The Lion & the Lamb print is absolutely stunning. The gold tones are even more beautiful in person.",
-                name: "Sofia M.",
-                location: "San Antonio, TX",
-              },
-            ].map((t, i) => (
-              <div key={i} className="testimonial-card">
-                <div className="testimonial-card__stars">★★★★★</div>
-                <p className="testimonial-card__quote">"{t.quote}"</p>
-                <div className="testimonial-card__author">
-                  <strong>{t.name}</strong>
-                  <span>{t.location}</span>
-                </div>
-              </div>
-            ))}
+      {/* ── 7. FAITH ILLUSTRATIONS STRIP ── */}
+      <section className="why">
+        <div className="why__texture" />
+        <div
+          className="container why__inner"
+          style={{ flexDirection: "row-reverse" }}
+        >
+          <div className="why__art">
+            {/* Illustration: The Good Shepherd */}
+            <img src={ill3} alt="The Good Shepherd illustration" />
+          </div>
+          <div className="why__text">
+            <span className="section-label section-label--light">
+              Illustrations
+            </span>
+            <h2 className="why__heading">
+              Devotional art
+              <br />
+              for every season
+            </h2>
+            <p className="why__body">
+              From tender watercolor to luminous Nativity scenes, these soft
+              digital illustrations were created to live in your home, your
+              prayer space, or as a meaningful gift for someone you love.
+            </p>
+            <a href="/gallery" className="btn btn--dark">
+              Browse Illustrations
+            </a>
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* ── 8. EMAIL SIGNUP ── */}
       <section className="email-signup">
         <div
           className="email-signup__bg"
-          style={{ backgroundImage: `url(${art3})` }}
+          style={{ backgroundImage: `url(${ill2})` }}
         />
         <div className="email-signup__overlay" />
         <div className="container email-signup__inner">
@@ -316,7 +321,7 @@ const Home = () => {
       {/* ── 9. FINAL CTA ── */}
       <section className="final-cta">
         <div className="container final-cta__inner">
-          <img src={art1} alt="Faith artwork" className="final-cta__art" />
+          <img src={ill5} alt="Our Lady of Grace" className="final-cta__art" />
           <div className="final-cta__text">
             <h2 className="final-cta__heading">
               Bring a moment of peace
