@@ -53,9 +53,8 @@ const Contact = () => {
             </h2>
             <p className="contact-info__body">
               I read every message personally. Whether you have a question about
-              an existing work, want to start a commission, or just want to say
-              hello — please reach out. I typically respond within 1–2 business
-              days.
+              an existing work, or want to start a commission, please reach out.
+              I typically respond within 1–2 business days.
             </p>
 
             <div className="contact-details">

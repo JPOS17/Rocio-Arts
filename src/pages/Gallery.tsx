@@ -206,8 +206,8 @@ const artworks: Artwork[] = [
 const CATEGORIES: Category[] = [
   "All",
   "Oil Based",
-  "Custom Portraits",
   "Illustrations",
+  "Custom Portraits",
 ];
 
 // ─── Component ───────────────────────────────────────────
@@ -268,6 +268,30 @@ const Gallery = () => {
       {/* ── GRID ── */}
       <section className="gallery-grid-section">
         <div className="container">
+          {/* Custom Portraits context banner */}
+          {active === "Custom Portraits" && (
+            <div className="portraits-cta-banner">
+              <div className="portraits-cta-banner__text">
+                <span className="portraits-cta-banner__eyebrow">
+                  Custom Work
+                </span>
+                <p className="portraits-cta-banner__heading">
+                  Want your own custom portrait?
+                </p>
+                <p className="portraits-cta-banner__sub">
+                  These are examples of past commissions. Each portrait is
+                  created uniquely for you — reach out to start yours.
+                </p>
+              </div>
+              <Link
+                to="/contact"
+                className="btn btn--dark portraits-cta-banner__btn"
+              >
+                Request a Custom Portrait →
+              </Link>
+            </div>
+          )}
+
           <div className="gallery-grid">
             {filtered.map((art, i) => (
               <article
@@ -297,7 +321,11 @@ const Gallery = () => {
                       <span className="art-card__price">{art.price}</span>
                     )}
                   </div>
-                  {art.available ? (
+                  {art.category === "Custom Portraits" ? (
+                    <span className="art-card__portfolio-label">
+                      Portrait Example
+                    </span>
+                  ) : art.available ? (
                     <button className="btn btn--dark btn--sm art-card__btn">
                       Inquire
                     </button>
@@ -385,13 +413,22 @@ const Gallery = () => {
                 <p className="lightbox__price">{lightbox.price}</p>
               )}
               <div className="lightbox__actions">
-                {lightbox.available ? (
+                {lightbox.category === "Custom Portraits" ? (
+                  <div className="lightbox__commission-cta">
+                    <p className="lightbox__commission-note">
+                      This is a custom portrait example
+                    </p>
+                    <Link to="/contact" className="btn btn--dark">
+                      Commission Your Own Portrait →
+                    </Link>
+                  </div>
+                ) : lightbox.available ? (
                   <Link to="/contact" className="btn btn--dark">
                     Inquire About This Piece
                   </Link>
                 ) : (
                   <p className="lightbox__sold">
-                    This piece has found its home 🤍
+                    This piece has found its home!
                   </p>
                 )}
               </div>
