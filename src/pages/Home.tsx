@@ -22,6 +22,7 @@ import ill5 from "../assets/illustrations/ill5.png";
 // ─── Headshots ───────────────────────────────────────────
 import headshot1 from "../assets/headshots/headshot1.png";
 import headshot2 from "../assets/headshots/headshot2.png";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -43,9 +44,9 @@ const Home = () => {
             God
           </p>
           <div className="hero__ctas">
-            <a href="/gallery" className="btn btn--outline-light">
+            <Link to="/gallery" className="btn btn--outline-light">
               View Gallery
-            </a>
+            </Link>
           </div>
         </div>
         <div className="hero__scroll-hint">
@@ -66,7 +67,7 @@ const Home = () => {
           </div>
           <div className="intro__text">
             <span className="section-label">The Artist</span>
-            <h2 className="intro__heading">Hi, I'm Rocio&nbsp;🤍</h2>
+            <h2 className="intro__heading">Hi, I'm Rocio</h2>
             <p className="intro__body">
               I'm a graduate of the Savannah College of Art and Design with a
               BFA in Communication Arts, Illustration and Design. As a Catholic
@@ -79,9 +80,9 @@ const Home = () => {
               My greatest motivation is creating art that invites viewers to
               feel as though they're part of the piece.
             </p>
-            <a href="/about" className="btn btn--dark">
+            <Link to="/about" className="btn btn--dark">
               Read My Story
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -97,22 +98,22 @@ const Home = () => {
                 img: art2,
                 title: "Originals",
                 sub: "One-of-a-kind oil & acrylic paintings",
-                href: "/gallery",
+                to: "/gallery",
               },
               {
                 img: cust6,
                 title: "Custom Portraits",
                 sub: "Illustrated portraits of your cherished moments",
-                href: "/gallery",
+                to: "/gallery",
               },
               {
                 img: ill1,
                 title: "Illustrations",
                 sub: "Soft watercolor & devotional digital art",
-                href: "/gallery",
+                to: "/gallery",
               },
             ].map((col) => (
-              <a key={col.title} href={col.href} className="collection-card">
+              <Link key={col.title} to={col.to} className="collection-card">
                 <div className="collection-card__img-wrap">
                   <img src={col.img} alt={col.title} />
                   <div className="collection-card__overlay" />
@@ -122,7 +123,7 @@ const Home = () => {
                   <p>{col.sub}</p>
                   <span className="collection-card__link">Explore →</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -181,22 +182,22 @@ const Home = () => {
                 img: cust8,
                 title: "Wedding Portraits",
                 sub: "Celebrate your vows with a keepsake illustration",
-                href: "/gallery",
+                to: "/gallery",
               },
               {
                 img: cust3,
                 title: "Couples & Families",
                 sub: "Capture a treasured moment together",
-                href: "/gallery",
+                to: "/gallery",
               },
               {
                 img: cust5,
                 title: "Special Occasions",
                 sub: "First communions, graduations & more",
-                href: "/gallery",
+                to: "/gallery",
               },
             ].map((col) => (
-              <a key={col.title} href={col.href} className="collection-card">
+              <Link key={col.title} to={col.to} className="collection-card">
                 <div className="collection-card__img-wrap">
                   <img src={col.img} alt={col.title} />
                   <div className="collection-card__overlay" />
@@ -206,13 +207,13 @@ const Home = () => {
                   <p>{col.sub}</p>
                   <span className="collection-card__link">Inquire →</span>
                 </div>
-              </a>
+              </Link>
             ))}
           </div>
           <div style={{ textAlign: "center", marginTop: "2rem" }}>
-            <a href="/contact" className="btn btn--dark">
+            <Link to="/contact" className="btn btn--dark">
               Start a Commission
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -300,7 +301,7 @@ const Home = () => {
           <h2 className="email-signup__heading">Join the Studio</h2>
           <p className="email-signup__sub">
             New artwork, early releases, and faith-filled inspiration —
-            delivered to your inbox 🤍
+            delivered to your inbox
           </p>
           <form
             className="email-signup__form"
@@ -331,9 +332,9 @@ const Home = () => {
             <p className="final-cta__sub">
               Handcrafted with prayer. Painted with purpose. Made for your home.
             </p>
-            <a href="/gallery" className="btn btn--dark">
+            <Link to="/gallery" className="btn btn--dark">
               Shop Now
-            </a>
+            </Link>
           </div>
         </div>
       </section>

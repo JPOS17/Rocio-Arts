@@ -25,20 +25,14 @@ import ill4 from "../assets/illustrations/ill4.png";
 import ill5 from "../assets/illustrations/ill5.png";
 
 // ─── Types ───────────────────────────────────────────────
-type Category =
-  | "All"
-  | "Originals"
-  | "Prints"
-  | "Faith Series"
-  | "Custom Portraits"
-  | "Illustrations";
+type Category = "All" | "Oil Based" | "Custom Portraits" | "Illustrations";
 
 interface Artwork {
   id: number;
   img: string;
   title: string;
   medium: string;
-  size: string;
+  size?: string;
   category: Exclude<Category, "All">;
   available: boolean;
   price?: string;
@@ -51,9 +45,9 @@ const artworks: Artwork[] = [
     id: 1,
     img: art1,
     title: "The Last Supper",
-    medium: "Acrylic on canvas",
-    size: '24" × 18"',
-    category: "Faith Series",
+    medium: "Oil on canvas",
+    // size: '24" × 18"',
+    category: "Oil Based",
     available: true,
     // price: "$1,200",
   },
@@ -62,8 +56,8 @@ const artworks: Artwork[] = [
     img: art2,
     title: "Lion & the Lamb",
     medium: "Oil on canvas",
-    size: '30" × 24"',
-    category: "Originals",
+    // size: '30" × 24"',
+    category: "Oil Based",
     available: true,
     // price: "$980",
   },
@@ -72,9 +66,9 @@ const artworks: Artwork[] = [
     img: art3,
     title: "Cardinal in Winter",
     medium: "Oil on canvas",
-    size: '20" × 16"',
-    category: "Originals",
-    available: false,
+    // size: '20" × 16"',
+    category: "Oil Based",
+    available: true,
     // price: "$740",
   },
 
@@ -211,15 +205,14 @@ const artworks: Artwork[] = [
 
 const CATEGORIES: Category[] = [
   "All",
-  "Originals",
-  "Faith Series",
+  "Oil Based",
   "Custom Portraits",
   "Illustrations",
-  "Prints",
 ];
 
 // ─── Component ───────────────────────────────────────────
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Gallery = () => {
   const [active, setActive] = useState<Category>("All");
@@ -350,9 +343,9 @@ const Gallery = () => {
               number of commissions each year — faith-inspired subjects,
               personal devotions, and gifts that last a lifetime.
             </p>
-            <a href="/contact" className="btn btn--dark">
+            <Link to="/contact" className="btn btn--dark">
               Start a Conversation
-            </a>
+            </Link>
           </div>
           <div className="commission__art">
             <img src={art2} alt="Commission example" />
@@ -393,9 +386,9 @@ const Gallery = () => {
               )}
               <div className="lightbox__actions">
                 {lightbox.available ? (
-                  <a href="/contact" className="btn btn--dark">
+                  <Link to="/contact" className="btn btn--dark">
                     Inquire About This Piece
-                  </a>
+                  </Link>
                 ) : (
                   <p className="lightbox__sold">
                     This piece has found its home 🤍

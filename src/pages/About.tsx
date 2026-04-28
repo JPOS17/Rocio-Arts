@@ -2,20 +2,18 @@ import "../styles/Global.css";
 import "../styles/About.css";
 
 import headshot1 from "../assets/headshots/headshot3.png";
+import { Link } from "react-router-dom";
 
 const credentials = [
   {
-    icon: "🎓",
     title: "Savannah College of Art and Design",
     body: "BFA in Communication Arts, Illustration and Design — a foundation built on discipline, storytelling, and the craft of visual language.",
   },
   {
-    icon: "✝️",
     title: "Faith as the foundation",
     body: "As a Catholic artist, every piece begins in prayer. Scripture, the saints, and sacred moments are not subjects — they are the source.",
   },
   {
-    icon: "🎨",
     title: "Oil, acrylic & mixed media",
     body: "Working primarily in oil and acrylic, each painting is layered slowly over weeks — glazes, texture, and light built up with intention.",
   },
@@ -106,7 +104,6 @@ const About = () => {
           <div className="cred-grid">
             {credentials.map((c) => (
               <div key={c.title} className="cred-card">
-                <div className="cred-card__icon">{c.icon}</div>
                 <h3>{c.title}</h3>
                 <p>{c.body}</p>
               </div>
@@ -145,9 +142,9 @@ const About = () => {
             Each painting is created slowly and with intention — never
             mass-produced, never rushed. Come see what that looks like.
           </p>
-          <a href="/gallery" className="btn btn--dark">
+          <Link to="/gallery" className="btn btn--dark">
             View Gallery
-          </a>
+          </Link>
         </div>
       </section>
     </div>

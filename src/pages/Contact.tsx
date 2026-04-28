@@ -1,5 +1,7 @@
 import "../styles/Global.css";
 import "../styles/Contact.css";
+import { Link } from "react-router-dom";
+import { Clock, Mail, MapPin } from "lucide-react";
 
 const faqs = [
   {
@@ -58,25 +60,33 @@ const Contact = () => {
 
             <div className="contact-details">
               <div className="contact-detail">
-                <div className="contact-detail__icon">✉️</div>
+                <div className="contact-detail__icon">
+                  <Mail size={20} />
+                </div>
                 <div>
                   <p className="contact-detail__label">Email</p>
                   <p className="contact-detail__value">
                     <a href="mailto:hello@rocioortizstudio.com">
-                      hello@rocioortizstudio.com
+                      Rocioortiz.art@gmail.com
                     </a>
                   </p>
                 </div>
               </div>
               <div className="contact-detail">
-                <div className="contact-detail__icon">📍</div>
+                <div className="contact-detail__icon">
+                  <MapPin size={20} />
+                </div>
                 <div>
                   <p className="contact-detail__label">Based in</p>
-                  <p className="contact-detail__value">Houston, Texas</p>
+                  <p className="contact-detail__value">
+                    Charlotte, North Carolina
+                  </p>
                 </div>
               </div>
               <div className="contact-detail">
-                <div className="contact-detail__icon">🕊️</div>
+                <div className="contact-detail__icon">
+                  <Clock size={20} />
+                </div>
                 <div>
                   <p className="contact-detail__label">Response time</p>
                   <p className="contact-detail__value">1–2 business days</p>
@@ -86,7 +96,7 @@ const Contact = () => {
 
             <div className="contact-social">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/rocioortiz.art"
                 target="_blank"
                 rel="noreferrer"
                 className="contact-social__link"
@@ -94,12 +104,12 @@ const Contact = () => {
                 Instagram
               </a>
               <a
-                href="https://pinterest.com"
+                href="https://www.facebook.com/rocioortiz.art"
                 target="_blank"
                 rel="noreferrer"
                 className="contact-social__link"
               >
-                Pinterest
+                Facebook
               </a>
             </div>
           </div>
@@ -203,9 +213,9 @@ const Contact = () => {
             </p>
           </div>
           <div>
-            <a href="/gallery" className="btn btn--dark">
+            <Link to="/gallery" className="btn btn--dark">
               See Examples
-            </a>
+            </Link>
           </div>
         </div>
       </section>
