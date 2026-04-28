@@ -82,6 +82,7 @@
 .foo__social {
   display: flex;
   flex-direction: column;
+  gap: 0.20rem;
 }
 
 .foo__social h4 {
