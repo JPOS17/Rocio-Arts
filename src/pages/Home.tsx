@@ -1,5 +1,6 @@
 import "../styles/Global.css";
 import "../styles/Home.css";
+import { useState } from "react";
 
 // ─── Oil / Acrylic Originals ─────────────────────────────
 import art1 from "../assets/oil/art1.png";
@@ -24,7 +25,39 @@ import headshot1 from "../assets/headshots/headshot1.png";
 import headshot2 from "../assets/headshots/headshot2.png";
 import { Link } from "react-router-dom";
 
+const KIT_FORM_ID = import.meta.env.VITE_KIT_FORM_ID;
+const KIT_API_KEY = import.meta.env.VITE_KIT_API_KEY;
+
 const Home = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes("@") || !email.includes(".")) {
+      setStatus("error");
+      return;
+    }
+    setStatus("loading");
+    try {
+      const res = await fetch(
+        `https://api.convertkit.com/v3/forms/${KIT_FORM_ID}/subscribe`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ api_key: KIT_API_KEY, email }),
+        },
+      );
+      if (!res.ok) throw new Error("Failed to subscribe");
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <div className="home">
       {/* ── 1. HERO ── */}
@@ -303,19 +336,46 @@ const Home = () => {
             New artwork, early releases, and faith-filled inspiration —
             delivered to your inbox
           </p>
-          <form
-            className="email-signup__form"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="email-signup__input"
-            />
-            <button type="submit" className="btn btn--light">
-              Subscribe
-            </button>
-          </form>
+          {status === "success" ? (
+            <p style={{ color: "#fff", fontSize: "1.1rem", marginTop: "1rem" }}>
+              Thank you for subscribing to the studio!
+            </p>
+          ) : (
+            <>
+              <form className="email-signup__form" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="email-signup__input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="btn btn--light"
+                  disabled={status === "loading"}
+                  style={{ transform: "none" }}
+                  onMouseOver={(e) =>
+                    (e.currentTarget.style.transform = "none")
+                  }
+                >
+                  {status === "loading" ? "Subscribing…" : "Subscribe"}
+                </button>
+              </form>
+              {status === "error" && (
+                <p
+                  style={{
+                    color: "#ffaaaa",
+                    marginTop: "0.75rem",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  Please enter a valid email address.
+                </p>
+              )}
+            </>
+          )}
         </div>
       </section>
 
