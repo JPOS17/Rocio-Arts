@@ -110,7 +110,7 @@ const Contact = () => {
             <p className="contact-info__body">
               I read every message personally. Whether you have a question about
               an existing work, or want to start a commission, please reach out.
-              I typically respond within 1–2 business days.
+              I typically respond within 2–5 business days.
             </p>
 
             <div className="contact-details">
@@ -144,7 +144,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="contact-detail__label">Response time</p>
-                  <p className="contact-detail__value">1–2 business days</p>
+                  <p className="contact-detail__value">2–5 business days</p>
                 </div>
               </div>
             </div>

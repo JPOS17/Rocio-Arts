@@ -117,3 +117,16 @@
   0%, 100% { opacity: 0.3; transform: scaleY(0.7); transform-origin: top; }
   50%       { opacity: 1;   transform: scaleY(1); }
 }
+
+/* ── IMAGE PROTECTION ── */
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+a img, button img {
+  pointer-events: auto;
+}

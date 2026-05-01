@@ -40,39 +40,30 @@ interface Artwork {
 
 // ─── Data ────────────────────────────────────────────────
 const artworks: Artwork[] = [
-  // ── Originals (oil/acrylic on canvas) ──
   {
     id: 1,
     img: art1,
     title: "The Last Supper",
     medium: "Oil on canvas",
-    // size: '24" × 18"',
     category: "Oil Based",
     available: true,
-    // price: "$1,200",
   },
   {
     id: 2,
     img: art2,
     title: "Lion & the Lamb",
     medium: "Oil on canvas",
-    // size: '30" × 24"',
     category: "Oil Based",
     available: true,
-    // price: "$980",
   },
   {
     id: 3,
     img: art3,
     title: "Cardinal in Winter",
     medium: "Oil on canvas",
-    // size: '20" × 16"',
     category: "Oil Based",
     available: true,
-    // price: "$740",
   },
-
-  // ── Custom Portraits ──
   {
     id: 4,
     img: cust1,
@@ -154,8 +145,6 @@ const artworks: Artwork[] = [
     category: "Custom Portraits",
     available: true,
   },
-
-  // ── Illustrations ──
   {
     id: 13,
     img: ill1,
@@ -210,16 +199,153 @@ const CATEGORIES: Category[] = [
   "Custom Portraits",
 ];
 
-// ─── Component ───────────────────────────────────────────
+const customPortraits = artworks.filter(
+  (a) => a.category === "Custom Portraits",
+);
+
+// ─── Component imports ───────────────────────────────────
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+// ─── Portrait Flipbook ───────────────────────────────────
+const PortraitFlipbook = () => {
+  const [displayed, setDisplayed] = useState(0);
+  const [next, setNext] = useState(1);
+  const [fading, setFading] = useState(false);
+
+  const total = customPortraits.length;
+
+  const go = (targetIndex: number) => {
+    if (fading || targetIndex === displayed) return;
+    setNext(targetIndex);
+    setFading(true);
+    setTimeout(() => {
+      setDisplayed(targetIndex);
+      setFading(false);
+    }, 420);
+  };
+
+  const goDir = (dir: "prev" | "next") => {
+    const target =
+      dir === "next"
+        ? (displayed + 1) % total
+        : (displayed - 1 + total) % total;
+    go(target);
+  };
+
+  return (
+    <div className="portrait-flipbook">
+      {/* CTA Banner */}
+      <div className="portraits-cta-banner">
+        <div className="portraits-cta-banner__text">
+          <span className="portraits-cta-banner__eyebrow">Custom Work</span>
+          <p className="portraits-cta-banner__heading">
+            Want your own custom portrait?
+          </p>
+          <p className="portraits-cta-banner__sub">
+            Each portrait is created uniquely for you — reach out to start
+            yours.
+          </p>
+        </div>
+        <Link to="/contact" className="btn btn--dark portraits-cta-banner__btn">
+          Request a Custom Portrait →
+        </Link>
+      </div>
+
+      {/* Flipbook card */}
+      <div className="flipbook-card">
+        {/* Main card — fixed size, never resizes */}
+        <div className="flipbook-card__main">
+          <div className="flipbook-card__img-wrap">
+            <img
+              key={`next-${next}`}
+              src={customPortraits[next].img}
+              alt={customPortraits[next].title}
+              className="flipbook-img flipbook-img--below"
+            />
+            <img
+              key={`cur-${displayed}`}
+              src={customPortraits[displayed].img}
+              alt={customPortraits[displayed].title}
+              className={`flipbook-img flipbook-img--top${fading ? " flipbook-img--fading" : ""}`}
+            />
+          </div>
+
+          {/* Info strip */}
+          <div className="flipbook-card__info">
+            <div className="flipbook-card__meta">
+              <h3 className="flipbook-card__title">
+                {customPortraits[displayed].title}
+              </h3>
+              <p className="flipbook-card__medium">
+                {customPortraits[displayed].medium}
+              </p>
+            </div>
+            <span className="flipbook-card__portfolio-label">
+              Portrait Example
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Dot indicators */}
+      <div
+        className="flipbook-dots"
+        role="tablist"
+        aria-label="Portrait examples"
+      >
+        {customPortraits.map((_, i) => (
+          <button
+            key={i}
+            role="tab"
+            aria-selected={i === displayed}
+            aria-label={`Portrait ${i + 1}`}
+            className={`flipbook-dot${i === displayed ? " flipbook-dot--active" : ""}`}
+            onClick={() => go(i)}
+          />
+        ))}
+      </div>
+
+      {/* Counter with inline arrows */}
+      <div className="flipbook-counter">
+        <button
+          className="flipbook-nav-inline"
+          onClick={() => goDir("prev")}
+          aria-label="Previous portrait"
+        >
+          ←
+        </button>
+        <span className="flipbook-counter__num">{displayed + 1}</span>
+        <span className="flipbook-counter__sep">/ {total}</span>
+        <button
+          className="flipbook-nav-inline"
+          onClick={() => goDir("next")}
+          aria-label="Next portrait"
+        >
+          →
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// ─── Main Gallery ─────────────────────────────────────────
 const Gallery = () => {
   const [active, setActive] = useState<Category>("All");
   const [lightbox, setLightbox] = useState<Artwork | null>(null);
 
+  const nonPortraitArtworks = artworks.filter(
+    (a) => a.category !== "Custom Portraits",
+  );
+
   const filtered =
-    active === "All" ? artworks : artworks.filter((a) => a.category === active);
+    active === "All"
+      ? nonPortraitArtworks
+      : active === "Custom Portraits"
+        ? []
+        : artworks.filter((a) => a.category === active);
+
+  const showFlipbook = active === "Custom Portraits";
 
   return (
     <div className="gallery-page">
@@ -260,7 +386,14 @@ const Gallery = () => {
             ))}
           </div>
           <p className="gallery-filters__count">
-            {filtered.length} {filtered.length === 1 ? "work" : "works"}
+            {active === "All"
+              ? nonPortraitArtworks.length
+              : artworks.filter((a) => a.category === active).length}{" "}
+            {(active === "All"
+              ? nonPortraitArtworks.length
+              : artworks.filter((a) => a.category === active).length) === 1
+              ? "work"
+              : "works"}
           </p>
         </div>
       </section>
@@ -268,93 +401,64 @@ const Gallery = () => {
       {/* ── GRID ── */}
       <section className="gallery-grid-section">
         <div className="container">
-          {/* Custom Portraits context banner */}
-          {active === "Custom Portraits" && (
-            <div className="portraits-cta-banner">
-              <div className="portraits-cta-banner__text">
-                <span className="portraits-cta-banner__eyebrow">
-                  Custom Work
-                </span>
-                <p className="portraits-cta-banner__heading">
-                  Want your own custom portrait?
-                </p>
-                <p className="portraits-cta-banner__sub">
-                  These are examples of past commissions. Each portrait is
-                  created uniquely for you — reach out to start yours.
-                </p>
+          {active !== "Custom Portraits" && (
+            <>
+              <div className="gallery-grid">
+                {filtered.map((art, i) => (
+                  <article
+                    key={`${active}-${art.id}`}
+                    className="art-card"
+                    style={{ animationDelay: `${i * 0.06}s` }}
+                    onClick={() => setLightbox(art)}
+                  >
+                    <div className="art-card__img-wrap">
+                      <img src={art.img} alt={art.title} loading="lazy" />
+                      <div className="art-card__overlay">
+                        <span className="art-card__zoom">View</span>
+                      </div>
+                      {!art.available && (
+                        <span className="art-card__badge art-card__badge--sold">
+                          Sold
+                        </span>
+                      )}
+                      <span className="art-card__category">{art.category}</span>
+                    </div>
+                    <div className="art-card__info">
+                      <h3 className="art-card__title">{art.title}</h3>
+                      <p className="art-card__medium">{art.medium}</p>
+                      <div className="art-card__footer">
+                        <span className="art-card__size">{art.size}</span>
+                        {art.price && (
+                          <span className="art-card__price">{art.price}</span>
+                        )}
+                      </div>
+                      {art.available ? (
+                        <button className="btn btn--dark btn--sm art-card__btn">
+                          Inquire
+                        </button>
+                      ) : (
+                        <button
+                          className="btn btn--sm art-card__btn"
+                          disabled
+                          style={{
+                            opacity: 0.4,
+                            cursor: "not-allowed",
+                            background: "var(--cream-dark)",
+                            color: "var(--text-mid)",
+                            border: "1.5px solid var(--text-light)",
+                          }}
+                        >
+                          Sold
+                        </button>
+                      )}
+                    </div>
+                  </article>
+                ))}
               </div>
-              <Link
-                to="/contact"
-                className="btn btn--dark portraits-cta-banner__btn"
-              >
-                Request a Custom Portrait →
-              </Link>
-            </div>
+            </>
           )}
 
-          <div className="gallery-grid">
-            {filtered.map((art, i) => (
-              <article
-                key={`${active}-${art.id}`}
-                className="art-card"
-                style={{ animationDelay: `${i * 0.06}s` }}
-                onClick={() => setLightbox(art)}
-              >
-                <div className="art-card__img-wrap">
-                  <img src={art.img} alt={art.title} loading="lazy" />
-                  <div className="art-card__overlay">
-                    <span className="art-card__zoom">View</span>
-                  </div>
-                  {!art.available && (
-                    <span className="art-card__badge art-card__badge--sold">
-                      Sold
-                    </span>
-                  )}
-                  <span className="art-card__category">{art.category}</span>
-                </div>
-                <div className="art-card__info">
-                  <h3 className="art-card__title">{art.title}</h3>
-                  <p className="art-card__medium">{art.medium}</p>
-                  <div className="art-card__footer">
-                    <span className="art-card__size">{art.size}</span>
-                    {art.price && (
-                      <span className="art-card__price">{art.price}</span>
-                    )}
-                  </div>
-                  {art.category === "Custom Portraits" ? (
-                    <span className="art-card__portfolio-label">
-                      Portrait Example
-                    </span>
-                  ) : art.available ? (
-                    <button className="btn btn--dark btn--sm art-card__btn">
-                      Inquire
-                    </button>
-                  ) : (
-                    <button
-                      className="btn btn--sm art-card__btn"
-                      disabled
-                      style={{
-                        opacity: 0.4,
-                        cursor: "not-allowed",
-                        background: "var(--cream-dark)",
-                        color: "var(--text-mid)",
-                        border: "1.5px solid var(--text-light)",
-                      }}
-                    >
-                      Sold
-                    </button>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-
-          {/* Empty state */}
-          {filtered.length === 0 && (
-            <div className="gallery-empty">
-              <p>No works in this category yet — check back soon.</p>
-            </div>
-          )}
+          {showFlipbook && <PortraitFlipbook />}
         </div>
       </section>
 
@@ -413,16 +517,7 @@ const Gallery = () => {
                 <p className="lightbox__price">{lightbox.price}</p>
               )}
               <div className="lightbox__actions">
-                {lightbox.category === "Custom Portraits" ? (
-                  <div className="lightbox__commission-cta">
-                    <p className="lightbox__commission-note">
-                      This is a custom portrait example
-                    </p>
-                    <Link to="/contact" className="btn btn--dark">
-                      Commission Your Own Portrait →
-                    </Link>
-                  </div>
-                ) : lightbox.available ? (
+                {lightbox.available ? (
                   <Link to="/contact" className="btn btn--dark">
                     Inquire About This Piece
                   </Link>
