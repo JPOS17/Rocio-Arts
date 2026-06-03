@@ -2,25 +2,25 @@ import "../styles/Global.css";
 import "../styles/Home.css";
 import { useState } from "react";
 
-// ─── Oil / Acrylic Originals ─────────────────────────────
+// Oil / Acrylic Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
 
-// ─── Custom Portraits ────────────────────────────────────
+// Custom Portraits
 import cust3 from "../assets/customs/cust3.png";
 import cust5 from "../assets/customs/cust5.png";
 import cust6 from "../assets/customs/cust6.png";
 import cust8 from "../assets/customs/cust8.png";
 
-// ─── Watercolor Illustrations ────────────────────────────
+// Watercolor Illustrations
 import ill1 from "../assets/illustrations/ill1.png";
 import ill2 from "../assets/illustrations/ill2.png";
 import ill3 from "../assets/illustrations/ill3.png";
 import ill4 from "../assets/illustrations/ill4.png";
 import ill5 from "../assets/illustrations/ill5.png";
 
-// ─── Headshots ───────────────────────────────────────────
+// Headshots
 import headshot1 from "../assets/headshots/headshot1.png";
 import headshot2 from "../assets/headshots/headshot2.png";
 import { Link } from "react-router-dom";
@@ -62,7 +62,6 @@ const Home = () => {
     <div className="home">
       {/* ── 1. HERO ── */}
       <section className="hero">
-        {/* Hero background: oil painting — The Last Supper */}
         <div className="hero__bg" style={{ backgroundImage: `url(${art1})` }} />
         <div className="hero__overlay" />
         <div className="hero__content">
@@ -296,7 +295,6 @@ const Home = () => {
           style={{ flexDirection: "row-reverse" }}
         >
           <div className="why__art">
-            {/* Illustration: The Good Shepherd */}
             <img src={ill3} alt="The Good Shepherd illustration" />
           </div>
           <div className="why__text">

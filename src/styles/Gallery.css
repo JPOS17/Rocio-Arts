@@ -1,7 +1,3 @@
-/* ─────────────────────────────────────────────
-   GALLERY.CSS  —  Rocio Ortiz Studio
-───────────────────────────────────────────── */
-
 .gallery-page {
   font-family: var(--font-body);
   background: var(--cream);
@@ -9,9 +5,7 @@
   overflow-x: hidden;
 }
 
-/* ══════════════════════════════════
-   HERO
-══════════════════════════════════ */
+/* ── HERO ── */
 .gallery-page .gallery-hero {
   position: relative;
   height: 52svh;
@@ -97,9 +91,7 @@
   animation: scrollPulse 2s ease-in-out infinite;
 }
 
-/* ══════════════════════════════════
-   FILTER BAR
-══════════════════════════════════ */
+/* ── FILTER BAR ── */
 .gallery-page .gallery-filters {
   background: var(--white);
   border-bottom: 1px solid var(--cream-dark);
@@ -161,10 +153,8 @@
   white-space: nowrap;
   margin-left: auto;
 }
-
-/* ══════════════════════════════════
-   GALLERY GRID
-══════════════════════════════════ */
+   
+/* ── GALLERY GRID ── */
 .gallery-page .gallery-grid-section {
   padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(5rem, 10vw, 8rem);
   background: var(--cream);
@@ -372,9 +362,7 @@
   }
 }
 
-/* ══════════════════════════════════
-   COMMISSION STRIP
-══════════════════════════════════ */
+/* ── COMMISSION STRIP ── */
 .gallery-page .commission {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--navy);
@@ -436,9 +424,8 @@
   border-radius: var(--radius);
 }
 
-/* ══════════════════════════════════
-   LIGHTBOX
-══════════════════════════════════ */
+/* ── LIGHTBOX ── */
+
 .gallery-page .lightbox {
   position: fixed;
   inset: 0;
@@ -562,9 +549,7 @@
   color: var(--text-mid);
 }
 
-/* ══════════════════════════════════
-   PORTRAIT FLIPBOOK
-══════════════════════════════════ */
+/* ── PORTRAIT FLIPBOOK ── */
 .gallery-page .portrait-flipbook {
   margin-bottom: 4rem;
 }
@@ -737,9 +722,7 @@
   font-weight: 400;
 }
 
-/* ══════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════ */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .gallery-page .gallery-grid {
     grid-template-columns: repeat(2, 1fr);

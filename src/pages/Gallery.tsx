@@ -1,12 +1,12 @@
 import "../styles/Global.css";
 import "../styles/Gallery.css";
 
-// ─── Oil/Acrylic Originals ───────────────────────────────
+// Oil/Acrylic Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
 
-// ─── Custom Portrait Commissions ────────────────────────
+// Custom Portrait Commissions
 import cust1 from "../assets/customs/cust1.png";
 import cust2 from "../assets/customs/cust2.png";
 import cust3 from "../assets/customs/cust3.png";
@@ -17,14 +17,14 @@ import cust7 from "../assets/customs/cust7.png";
 import cust8 from "../assets/customs/cust8.png";
 import cust9 from "../assets/customs/cust9.png";
 
-// ─── Watercolor Illustrations ───────────────────────────
+// Watercolor Illustrations
 import ill1 from "../assets/illustrations/ill1.png";
 import ill2 from "../assets/illustrations/ill2.png";
 import ill3 from "../assets/illustrations/ill3.png";
 import ill4 from "../assets/illustrations/ill4.png";
 import ill5 from "../assets/illustrations/ill5.png";
 
-// ─── Types ───────────────────────────────────────────────
+// Types
 type Category = "All" | "Oil Based" | "Custom Portraits" | "Illustrations";
 
 interface Artwork {
@@ -38,7 +38,7 @@ interface Artwork {
   price?: string;
 }
 
-// ─── Data ────────────────────────────────────────────────
+// Data
 const artworks: Artwork[] = [
   {
     id: 1,
@@ -203,11 +203,11 @@ const customPortraits = artworks.filter(
   (a) => a.category === "Custom Portraits",
 );
 
-// ─── Component imports ───────────────────────────────────
+// Component imports
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-// ─── Portrait Flipbook ───────────────────────────────────
+// Portrait Flipbook
 const PortraitFlipbook = () => {
   const [displayed, setDisplayed] = useState(0);
   const [next, setNext] = useState(1);
@@ -329,7 +329,7 @@ const PortraitFlipbook = () => {
   );
 };
 
-// ─── Main Gallery ─────────────────────────────────────────
+// Main Gallery
 const Gallery = () => {
   const [active, setActive] = useState<Category>("All");
   const [lightbox, setLightbox] = useState<Artwork | null>(null);

@@ -1,7 +1,3 @@
-/* ─────────────────────────────────────────────
-   HOME.CSS  —  Rocio Ortiz Studio
-───────────────────────────────────────────── */
-
 .home {
   font-family: var(--font-body);
   background: var(--cream);
@@ -10,9 +6,7 @@
 }
 
 
-/* ══════════════════════════════════
-   1. HERO
-══════════════════════════════════ */
+/* ── HERO ── */
 .home .hero {
   position: relative;
   height: 100svh;
@@ -104,9 +98,7 @@
 }
 
 
-/* ══════════════════════════════════
-   2. INTRO
-══════════════════════════════════ */
+/* ── INTRO ── */
 .home .intro {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--white);
@@ -163,9 +155,7 @@
 .home .intro__text .btn { margin-top: 1rem; }
 
 
-/* ══════════════════════════════════
-   3. COLLECTIONS
-══════════════════════════════════ */
+/* ── COLLECTIONS ── */
 .home .collections {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--cream);
@@ -237,9 +227,7 @@
 }
 
 
-/* ══════════════════════════════════
-   4. WHY / MISSION
-══════════════════════════════════ */
+/* ── WHY / MISSION ── */
 .home .why {
   position: relative;
   padding: clamp(5rem, 10vw, 9rem) 0;
@@ -304,9 +292,7 @@
 }
 
 
-/* ══════════════════════════════════
-   5. PRODUCTS (currently commented out in JSX)
-══════════════════════════════════ */
+/* ── PRODUCTS ── */
 .home .products {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--cream-dark);
@@ -385,9 +371,7 @@
 .home .product-card__info .btn { align-self: flex-start; margin-top: 0.25rem; }
 
 
-/* ══════════════════════════════════
-   6. PROCESS
-══════════════════════════════════ */
+/* ── PROCESS ── */
 .home .process {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--white);
@@ -443,9 +427,7 @@
 }
 
 
-/* ══════════════════════════════════
-   7. TESTIMONIALS (currently commented out in JSX)
-══════════════════════════════════ */
+/* ── TESTIMONIALS ── */
 .home .testimonials {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--cream);
@@ -503,9 +485,7 @@
 }
 
 
-/* ══════════════════════════════════
-   8. EMAIL SIGNUP
-══════════════════════════════════ */
+/* ── EMAIL SIGNUP ── */
 .home .email-signup {
   position: relative;
   padding: clamp(5rem, 10vw, 8rem) 0;
@@ -582,9 +562,7 @@
 }
 
 
-/* ══════════════════════════════════
-   9. FINAL CTA
-══════════════════════════════════ */
+/* ── FINAL CTA ── */
 .home .final-cta {
   padding: clamp(5rem, 10vw, 8rem) 0;
   background: var(--cream-dark);
@@ -622,10 +600,7 @@
 }
 
 
-/* ══════════════════════════════════
-   10. FOOTER
-   (kept unscoped since footer renders outside .home)
-══════════════════════════════════ */
+/* ── FOOTER ── */
 .footer {
   background: var(--navy);
   color: rgba(248, 244, 239, 0.7);
@@ -706,9 +681,7 @@
 }
 
 
-/* ══════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════ */
+/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .home .collections__grid,
   .home .products__grid,
