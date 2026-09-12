@@ -65,7 +65,7 @@ const Home = () => {
         <div className="hero__bg" style={{ backgroundImage: `url(${art1})` }} />
         <div className="hero__overlay" />
         <div className="hero__content">
-          <p className="hero__eyebrow">Rocio Ortiz Studio</p>
+          <p className="hero__eyebrow">Art Studio</p>
           <h1 className="hero__headline">
             Faith-inspired artwork
             <br /> 

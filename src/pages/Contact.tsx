@@ -134,7 +134,7 @@ const Contact = () => {
                 <div>
                   <p className="contact-detail__label">Based in</p>
                   <p className="contact-detail__value">
-                    Charlotte, North Carolina
+                    Kannapolis, North Carolina
                   </p>
                 </div>
               </div>
