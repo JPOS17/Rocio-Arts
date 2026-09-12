@@ -67,7 +67,9 @@ const Home = () => {
         <div className="hero__content">
           <p className="hero__eyebrow">Rocio Ortiz Studio</p>
           <h1 className="hero__headline">
-            Faith-inspired artwork that invites you
+            Faith-inspired artwork
+            <br /> 
+            that invites you
             <br />
             into prayerful moments
           </h1>
@@ -101,16 +103,10 @@ const Home = () => {
             <span className="section-label">The Artist</span>
             <h2 className="intro__heading">Hi, I'm Rocio</h2>
             <p className="intro__body">
-              I'm a graduate of the Savannah College of Art and Design with a
-              BFA in Communication Arts, Illustration and Design. As a Catholic
-              artist, I use my work to share stories, convey emotions, and
-              express the deeper truths of faith.
+              A Catholic artist and illustrator creating art that celebrates the beauty of our faith and the stories that bring us closer to God.
             </p>
             <p className="intro__body">
-              Prayer and reflection play a key role in my process, where I seek
-              new ways to express God's love and challenge myself as an artist.
-              My greatest motivation is creating art that invites viewers to
-              feel as though they're part of the piece.
+              From meaningful artwork to joyful designs for Christian families and homes, my hope is that each piece invites you to pause, reflect, and carry a little more of God’s love into your everyday life.
             </p>
             <Link to="/about" className="btn btn--dark">
               Read My Story
