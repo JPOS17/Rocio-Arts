@@ -1,7 +1,7 @@
 import "../styles/Global.css";
 import "../styles/Gallery.css";
 
-// Oil/Acrylic Originals
+// Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
@@ -17,15 +17,8 @@ import cust7 from "../assets/customs/cust7.png";
 import cust8 from "../assets/customs/cust8.png";
 import cust9 from "../assets/customs/cust9.png";
 
-// Watercolor Illustrations
-import ill1 from "../assets/illustrations/ill1.png";
-import ill2 from "../assets/illustrations/ill2.png";
-import ill3 from "../assets/illustrations/ill3.png";
-import ill4 from "../assets/illustrations/ill4.png";
-import ill5 from "../assets/illustrations/ill5.png";
-
 // Types
-type Category = "All" | "Oil Based" | "Custom Portraits" | "Illustrations";
+type Category = "All" | "Originals" | "Custom Portraits";
 
 interface Artwork {
   id: number;
@@ -36,6 +29,8 @@ interface Artwork {
   category: Exclude<Category, "All">;
   available: boolean;
   price?: string;
+  printsAvailable?: boolean;
+  description?: string;
 }
 
 // Data
@@ -43,26 +38,38 @@ const artworks: Artwork[] = [
   {
     id: 1,
     img: art1,
-    title: "The Last Supper",
-    medium: "Oil on canvas",
-    category: "Oil Based",
-    available: true,
+    title: "Eucharistic Institution",
+    medium: "Acrylic on canvas",
+    size: '48" x 36"',
+    category: "Originals",
+    available: false,
+    printsAvailable: true,
+    description:
+      "Drawing inspiration from the Last Supper, this painting invites the viewer into a quiet moment of reflection, evoking the profound presence of Christ during the Institution of the Eucharist. The abstract texture offers an impression of the scene while intentionally leaving space for personal interpretation, encouraging deeper emotional engagement. The color palette reflects the artist's intention to harmonize heaven and earth: blue evokes the divine, while the blend of green and earthy tones anchors the scene in the material world. Finally, gold represents God's eternal kingship, bringing together the divine and the human in a moment of profound connection.",
   },
   {
     id: 2,
     img: art2,
-    title: "Lion & the Lamb",
-    medium: "Oil on canvas",
-    category: "Oil Based",
-    available: true,
+    title: "The Lion and Lamb",
+    medium: "Acrylic on canvas",
+    size: '12" x 16"',
+    category: "Originals",
+    available: false,
+    printsAvailable: true,
+    description:
+      "In this original painting, the sovereign majesty of the Lion meets the gentle innocence of the Lamb — two images forever united in the Person of Jesus Christ. The Lion, fierce and kingly, speaks of His power, His justice, and His triumphant return. The Lamb, meek and pure, whispers of His sacrifice, His mercy, and His boundless love for a broken world. Together, they tell the one story that changes everything — that the God of all creation chose to save us not by force, but by laying down His life. This is the mystery at the heart of the Gospel: the King who became the sacrifice, and the Lamb who conquered death.",
   },
   {
     id: 3,
     img: art3,
-    title: "Cardinal in Winter",
+    title: "Red Cardinal",
     medium: "Oil on canvas",
-    category: "Oil Based",
-    available: true,
+    size: '12" x 16"',
+    category: "Originals",
+    available: false,
+    printsAvailable: true,
+    description:
+      "A single cardinal burns bright against the cool shadows of the forest — a vivid reminder that no matter how dark life feels, God is always present, always watching, and always closer than we think.",
   },
   {
     id: 4,
@@ -145,67 +152,29 @@ const artworks: Artwork[] = [
     category: "Custom Portraits",
     available: true,
   },
-  {
-    id: 13,
-    img: ill1,
-    title: "Flight into Egypt",
-    medium: "Digital watercolor",
-    size: "Digital",
-    category: "Illustrations",
-    available: true,
-  },
-  {
-    id: 14,
-    img: ill2,
-    title: "Our Lady of Expectation",
-    medium: "Digital watercolor",
-    size: "Digital",
-    category: "Illustrations",
-    available: true,
-  },
-  {
-    id: 15,
-    img: ill3,
-    title: "The Good Shepherd",
-    medium: "Digital watercolor",
-    size: "Digital",
-    category: "Illustrations",
-    available: true,
-  },
-  {
-    id: 16,
-    img: ill4,
-    title: "Madonna & Child",
-    medium: "Digital watercolor",
-    size: "Digital",
-    category: "Illustrations",
-    available: true,
-  },
-  {
-    id: 17,
-    img: ill5,
-    title: "Our Lady of Grace",
-    medium: "Pastel digital",
-    size: "Digital",
-    category: "Illustrations",
-    available: true,
-  },
 ];
 
-const CATEGORIES: Category[] = [
-  "All",
-  "Oil Based",
-  "Illustrations",
-  "Custom Portraits",
-];
+const CATEGORIES: Category[] = ["All", "Originals", "Custom Portraits"];
 
 const customPortraits = artworks.filter(
   (a) => a.category === "Custom Portraits",
 );
 
+// Where the "See What's Available" tag should send someone: browse other
+// available pieces in the same category, or the full gallery if none are
+// left there.
+const getPrintsLink = (category: Artwork["category"]) => {
+  const hasAvailableInCategory = artworks.some(
+    (a) => a.category === category && a.available,
+  );
+  return hasAvailableInCategory
+    ? `/gallery?category=${encodeURIComponent(category)}`
+    : "/gallery";
+};
+
 // Component imports
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 // Portrait Flipbook
 const PortraitFlipbook = () => {
@@ -331,8 +300,28 @@ const PortraitFlipbook = () => {
 
 // Main Gallery
 const Gallery = () => {
-  const [active, setActive] = useState<Category>("All");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const initialCategory: Category = CATEGORIES.includes(
+    categoryParam as Category,
+  )
+    ? (categoryParam as Category)
+    : "All";
+
+  const [active, setActive] = useState<Category>(initialCategory);
   const [lightbox, setLightbox] = useState<Artwork | null>(null);
+
+  // Keeps the filter in sync if the category changes via URL and
+  // closes the lightbox whenever that happens.
+  useEffect(() => {
+    setActive(initialCategory);
+    setLightbox(null);
+  }, [categoryParam]);
+
+  const handleSetActive = (cat: Category) => {
+    setActive(cat);
+    setSearchParams(cat === "All" ? {} : { category: cat });
+  };
 
   const nonPortraitArtworks = artworks.filter(
     (a) => a.category !== "Custom Portraits",
@@ -379,7 +368,7 @@ const Gallery = () => {
                 role="tab"
                 aria-selected={active === cat}
                 className={`gallery-tab${active === cat ? " gallery-tab--active" : ""}`}
-                onClick={() => setActive(cat)}
+                onClick={() => handleSetActive(cat)}
               >
                 {cat}
               </button>
@@ -432,25 +421,29 @@ const Gallery = () => {
                           <span className="art-card__price">{art.price}</span>
                         )}
                       </div>
-                      {art.available ? (
-                        <button className="btn btn--dark btn--sm art-card__btn">
-                          Inquire
-                        </button>
-                      ) : (
-                        <button
-                          className="btn btn--sm art-card__btn"
-                          disabled
-                          style={{
-                            opacity: 0.4,
-                            cursor: "not-allowed",
-                            background: "var(--cream-dark)",
-                            color: "var(--text-mid)",
-                            border: "1.5px solid var(--text-light)",
-                          }}
-                        >
-                          Sold
-                        </button>
-                      )}
+                      <div className="art-card__actions">
+                        {art.available ? (
+                          <button className="btn btn--dark btn--sm art-card__btn">
+                            Inquire
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn--sm art-card__btn art-card__btn--disabled"
+                            disabled
+                          >
+                            Sold
+                          </button>
+                        )}
+                        {art.printsAvailable && (
+                          <Link
+                            to={getPrintsLink(art.category)}
+                            className="art-card__prints-tag"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            See What's Available
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </article>
                 ))}
@@ -516,6 +509,14 @@ const Gallery = () => {
               {lightbox.price && (
                 <p className="lightbox__price">{lightbox.price}</p>
               )}
+              {lightbox.description && (
+                <div className="lightbox__description">
+                  <h3 className="lightbox__description-heading">
+                    About This Painting
+                  </h3>
+                  <p>{lightbox.description}</p>
+                </div>
+              )}
               <div className="lightbox__actions">
                 {lightbox.available ? (
                   <Link to="/contact" className="btn btn--dark">
@@ -525,6 +526,15 @@ const Gallery = () => {
                   <p className="lightbox__sold">
                     This piece has found its home!
                   </p>
+                )}
+                {lightbox.printsAvailable && (
+                  <Link
+                    to={getPrintsLink(lightbox.category)}
+                    className="art-card__prints-tag art-card__prints-tag--lightbox"
+                    onClick={() => setLightbox(null)}
+                  >
+                    See What's Available
+                  </Link>
                 )}
               </div>
             </div>

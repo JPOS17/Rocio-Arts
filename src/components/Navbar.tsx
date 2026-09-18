@@ -49,6 +49,9 @@ const Navbar = () => {
           <NavLink to="/gallery" className="nav__link">
             Gallery
           </NavLink>
+          <NavLink to="/shop" className="nav__link">
+            Shop
+          </NavLink>
           <NavLink to="/contact" className="nav__link nav__link--cta">
             Contact
           </NavLink>
@@ -78,6 +81,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink to="/gallery" className="nav__drawer-link">
             Gallery
+          </NavLink>
+          <NavLink to="/shop" className="nav__drawer-link">
+            Shop
           </NavLink>
           <NavLink to="/contact" className="nav__drawer-link">
             Contact

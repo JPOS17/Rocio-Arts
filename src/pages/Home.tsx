@@ -2,7 +2,7 @@ import "../styles/Global.css";
 import "../styles/Home.css";
 import { useState } from "react";
 
-// Oil / Acrylic Originals
+// Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
@@ -13,7 +13,7 @@ import cust5 from "../assets/customs/cust5.png";
 import cust6 from "../assets/customs/cust6.png";
 import cust8 from "../assets/customs/cust8.png";
 
-// Watercolor Illustrations
+// Illustrations
 import ill1 from "../assets/illustrations/ill1.png";
 import ill2 from "../assets/illustrations/ill2.png";
 import ill3 from "../assets/illustrations/ill3.png";
@@ -126,19 +126,19 @@ const Home = () => {
                 img: art2,
                 title: "Originals",
                 sub: "One-of-a-kind oil & acrylic paintings",
-                to: "/gallery",
+                to: "/gallery?category=Originals",
               },
               {
                 img: cust6,
                 title: "Custom Portraits",
                 sub: "Illustrated portraits of your cherished moments",
-                to: "/gallery",
+                to: "/gallery?category=Custom Portraits",
               },
               {
                 img: ill1,
                 title: "Illustrations",
                 sub: "Soft watercolor & devotional digital art",
-                to: "/gallery",
+                to: "/shop?category=Prints",
               },
             ].map((col) => (
               <Link key={col.title} to={col.to} className="collection-card">
@@ -307,9 +307,9 @@ const Home = () => {
               digital illustrations were created to live in your home, your
               prayer space, or as a meaningful gift for someone you love.
             </p>
-            <a href="/gallery" className="btn btn--dark">
+            <Link to="/shop?category=Prints" className="btn btn--dark">
               Browse Illustrations
-            </a>
+            </Link>
           </div>
         </div>
       </section>

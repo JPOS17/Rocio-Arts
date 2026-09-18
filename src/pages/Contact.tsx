@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import "../styles/Global.css";
 import "../styles/Contact.css";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { Clock, Mail, MapPin } from "lucide-react";
 
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "What's the process for ordering a print?",
-    a: "Prints are available directly through the gallery. Reach out via this form or through Instagram and I'll get you set up with sizing and shipping details.",
+    a: "Prints are available directly through the shop. Add the print you'd like to the order form and I'll follow up with sizing and shipping details.",
   },
 ];
 
@@ -32,6 +32,13 @@ const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [searchParams] = useSearchParams();
+
+  const prefillSubject = searchParams.get("subject") ?? "";
+  const prefillItem = searchParams.get("item");
+  const prefillMessage = prefillItem
+    ? `I'd like to order: ${prefillItem}`
+    : "";
 
   const validate = (form: HTMLFormElement) => {
     const newErrors: Record<string, string> = {};
@@ -238,6 +245,7 @@ const Contact = () => {
                     id="subject"
                     name="subject"
                     className={`form-select ${errors.subject ? "form-input--error" : ""}`}
+                    defaultValue={prefillSubject}
                     onChange={() => clearError("subject")}
                   >
                     <option value="">Select a topic…</option>
@@ -264,6 +272,7 @@ const Contact = () => {
                   name="message"
                   className={`form-textarea ${errors.message ? "form-input--error" : ""}`}
                   placeholder="Tell me a bit about what you're looking for…"
+                  defaultValue={prefillMessage}
                   onChange={() => clearError("message")}
                 />
                 <p className="form-hint">
