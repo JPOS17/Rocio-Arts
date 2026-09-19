@@ -28,7 +28,7 @@ interface ShopItem {
   img: string;
   title: string;
   medium: string;
-  size: string;
+  size?: string;
   price?: string;
   category: Exclude<ShopCategory, "All">;
 }
@@ -82,11 +82,10 @@ const shopItems: ShopItem[] = [
     category: "Pastel",
   },
   {
-    id: 6,
-    img: cust1,
-    title: "Family by the Lake",
+    id: 13,
+    img: cust8,
+    title: "Our Lady's Blessing",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -94,7 +93,6 @@ const shopItems: ShopItem[] = [
     img: cust2,
     title: "Wedding Carriage",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -102,15 +100,13 @@ const shopItems: ShopItem[] = [
     img: cust3,
     title: "Sunset Beach Couple",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
     id: 9,
-    img: cust4,
-    title: "First Communion",
+    img: cust1,
+    title: "Family by the Lake",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -118,7 +114,6 @@ const shopItems: ShopItem[] = [
     img: cust5,
     title: "Sisters at the Cathedral",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -126,7 +121,6 @@ const shopItems: ShopItem[] = [
     img: cust6,
     title: "Porch Swing",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -134,15 +128,13 @@ const shopItems: ShopItem[] = [
     img: cust7,
     title: "Mont Saint-Michel",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
-    id: 13,
-    img: cust8,
-    title: "Our Lady's Blessing",
+    id: 6,
+    img: cust4,
+    title: "First Communion",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
   {
@@ -150,7 +142,6 @@ const shopItems: ShopItem[] = [
     img: cust9,
     title: "First Dance",
     medium: "Digital illustration",
-    size: "Digital",
     category: "Digital Custom Portraits",
   },
 ];
