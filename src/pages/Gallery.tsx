@@ -3,9 +3,9 @@ import "../styles/Gallery.css";
 import { Link } from "react-router-dom";
 
 // Originals
-import art1 from "../assets/oil/art1.png";
-import art2 from "../assets/oil/art2.png";
-import art3 from "../assets/oil/art3.png";
+import eucharistic from "../assets/originals/eucharistic.png";
+import lion_lamb from "../assets/originals/lion_lamb.png";
+import redcardinal from "../assets/originals/redcardinal.png";
 
 interface Artwork {
   id: number;
@@ -24,7 +24,7 @@ interface Artwork {
 const artworks: Artwork[] = [
   {
     id: 1,
-    img: art1,
+    img: eucharistic,
     title: "Eucharistic Institution",
     medium: "Acrylic on canvas",
     size: '48" x 36"',
@@ -36,7 +36,7 @@ const artworks: Artwork[] = [
   },
   {
     id: 2,
-    img: art2,
+    img: lion_lamb,
     title: "The Lion and Lamb",
     medium: "Acrylic on canvas",
     size: '12" x 16"',
@@ -48,7 +48,7 @@ const artworks: Artwork[] = [
   },
   {
     id: 3,
-    img: art3,
+    img: redcardinal,
     title: "Red Cardinal",
     medium: "Oil on canvas",
     size: '12" x 16"',
@@ -75,7 +75,7 @@ const Gallery = () => {
       <section className="gallery-hero">
         <div
           className="gallery-hero__bg"
-          style={{ backgroundImage: `url(${art1})` }}
+          style={{ backgroundImage: `url(${eucharistic})` }}
         />
         <div className="gallery-hero__overlay" />
         <div className="gallery-hero__content">
@@ -167,7 +167,7 @@ const Gallery = () => {
             </Link>
           </div>
           <div className="commission__art">
-            <img src={art2} alt="Commission example" />
+            <img src={lion_lamb} alt="Commission example" />
             <div className="commission__art-accent" />
           </div>
         </div>

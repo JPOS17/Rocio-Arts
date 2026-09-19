@@ -1,7 +1,7 @@
 import "../styles/Global.css";
 import "../styles/About.css";
 
-import headshot1 from "../assets/headshots/headshot3.png";
+import headshot1 from "../assets/personal/headshot3.png";
 import { Link } from "react-router-dom";
 
 const credentials = [

@@ -3,23 +3,23 @@ import { Link, useSearchParams } from "react-router-dom";
 import "../styles/Global.css";
 import "../styles/Gallery.css";
 
-// Watercolor Illustrations (sold as prints)
-import ill1 from "../assets/illustrations/ill1.png";
-import ill2 from "../assets/illustrations/ill2.png";
-import ill3 from "../assets/illustrations/ill3.png";
-import ill4 from "../assets/illustrations/ill4.png";
-import ill5 from "../assets/illustrations/ill5.png";
+// Illustrations (sold as prints)
+import holyfamily from "../assets/illustrations/holyfamily.png";
+import mary from "../assets/illustrations/mary.png";
+import pastor from "../assets/illustrations/pastor.png";
+import mary_jesus_water from "../assets/illustrations/mary_jesus_water.png";
+import mary_jesus_pastel from "../assets/illustrations/mary_jesus_pastel.png";
 
 // Custom Portrait Commission Examples
-import cust1 from "../assets/customs/cust1.png";
-import cust2 from "../assets/customs/cust2.png";
-import cust3 from "../assets/customs/cust3.png";
-import cust4 from "../assets/customs/cust4.png";
-import cust5 from "../assets/customs/cust5.png";
-import cust6 from "../assets/customs/cust6.png";
-import cust7 from "../assets/customs/cust7.png";
-import cust8 from "../assets/customs/cust8.png";
-import cust9 from "../assets/customs/cust9.png";
+import family from "../assets/customs/family.png";
+import wedding_carriage from "../assets/customs/wedding_carriage.png";
+import sunset_couple from "../assets/customs/sunset_couple.png";
+import first_communion from "../assets/customs/first_communion.png";
+import sisters_cathedral from "../assets/customs/sisters_cathedral.png";
+import porch_swing from "../assets/customs/porch_swing.png";
+import mont_saint_michel from "../assets/customs/mont_saint_michel.png";
+import our_ladys_blessing from "../assets/customs/our_ladys_blessing.png";
+import first_dance from "../assets/customs/first_dance.png";
 
 type ShopCategory = "All" | "Watercolor" | "Pastel" | "Digital Custom Portraits";
 
@@ -38,7 +38,7 @@ interface ShopItem {
 const shopItems: ShopItem[] = [
   {
     id: 1,
-    img: ill1,
+    img: holyfamily,
     title: "Flight into Egypt",
     medium: "Digital watercolor print",
     size: '10" x 8"',
@@ -47,7 +47,7 @@ const shopItems: ShopItem[] = [
   },
   {
     id: 2,
-    img: ill2,
+    img: mary,
     title: "Our Lady of Expectation",
     medium: "Digital watercolor print",
     size: '10" x 8"',
@@ -56,7 +56,7 @@ const shopItems: ShopItem[] = [
   },
   {
     id: 3,
-    img: ill3,
+    img: pastor,
     title: "The Good Shepherd",
     medium: "Digital watercolor print",
     size: '10" x 8"',
@@ -65,7 +65,7 @@ const shopItems: ShopItem[] = [
   },
   {
     id: 4,
-    img: ill4,
+    img: mary_jesus_water,
     title: "Madonna & Child",
     medium: "Digital watercolor print",
     size: '10" x 8"',
@@ -74,7 +74,7 @@ const shopItems: ShopItem[] = [
   },
   {
     id: 5,
-    img: ill5,
+    img: mary_jesus_pastel,
     title: "Our Lady of Grace",
     medium: "Digital Pastel  print",
     size: '10" x 8"',
@@ -83,63 +83,63 @@ const shopItems: ShopItem[] = [
   },
   {
     id: 13,
-    img: cust8,
+    img: our_ladys_blessing,
     title: "Our Lady's Blessing",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 7,
-    img: cust2,
+    img: wedding_carriage,
     title: "Wedding Carriage",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 8,
-    img: cust3,
+    img: sunset_couple,
     title: "Sunset Beach Couple",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 9,
-    img: cust1,
+    img: family,
     title: "Family by the Lake",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 10,
-    img: cust5,
+    img: sisters_cathedral,
     title: "Sisters at the Cathedral",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 11,
-    img: cust6,
+    img: porch_swing,
     title: "Porch Swing",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 12,
-    img: cust7,
+    img: mont_saint_michel,
     title: "Mont Saint-Michel",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 6,
-    img: cust4,
+    img: first_communion,
     title: "First Communion",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
   },
   {
     id: 14,
-    img: cust9,
+    img: first_dance,
     title: "First Dance",
     medium: "Digital illustration",
     category: "Digital Custom Portraits",
@@ -192,7 +192,7 @@ const Shop = () => {
       <section className="gallery-hero">
         <div
           className="gallery-hero__bg"
-          style={{ backgroundImage: `url(${ill5})` }}
+          style={{ backgroundImage: `url(${mary_jesus_pastel})` }}
         />
         <div className="gallery-hero__overlay" />
         <div className="gallery-hero__content">

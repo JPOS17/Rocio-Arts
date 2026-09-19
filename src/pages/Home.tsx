@@ -3,26 +3,26 @@ import "../styles/Home.css";
 import { useState } from "react";
 
 // Oil / Acrylic Originals
-import art1 from "../assets/oil/art1.png";
-import art2 from "../assets/oil/art2.png";
-import art3 from "../assets/oil/art3.png";
+import eucharistic from "../assets/originals/eucharistic.png";
+import lion_lamb from "../assets/originals/lion_lamb.png";
+import redcardinal from "../assets/originals/redcardinal.png";
 
 // Custom Portraits
-import cust3 from "../assets/customs/cust3.png";
-import cust5 from "../assets/customs/cust5.png";
-import cust6 from "../assets/customs/cust6.png";
-import cust8 from "../assets/customs/cust8.png";
+import sunset_couple from "../assets/customs/sunset_couple.png";
+import sisters_cathedral from "../assets/customs/sisters_cathedral.png";
+import porch_swing from "../assets/customs/porch_swing.png";
+import our_ladys_blessing from "../assets/customs/our_ladys_blessing.png";
 
 // Watercolor Illustrations
-import ill1 from "../assets/illustrations/ill1.png";
-import ill2 from "../assets/illustrations/ill2.png";
-import ill3 from "../assets/illustrations/ill3.png";
-import ill4 from "../assets/illustrations/ill4.png";
-import ill5 from "../assets/illustrations/ill5.png";
+import holyfamily from "../assets/illustrations/holyfamily.png";
+import mary from "../assets/illustrations/mary.png";
+import pastor from "../assets/illustrations/pastor.png";
+import mary_jesus_water from "../assets/illustrations/mary_jesus_water.png";
+import mary_jesus_pastel from "../assets/illustrations/mary_jesus_pastel.png";
 
-// Headshots
-import headshot1 from "../assets/headshots/headshot1.png";
-import headshot2 from "../assets/headshots/headshot2.png";
+// personal
+import headshot1 from "../assets/personal/headshot1.png";
+import headshot2 from "../assets/personal/headshot2.png";
 import { Link } from "react-router-dom";
 
 const KIT_FORM_ID = import.meta.env.VITE_KIT_FORM_ID;
@@ -62,7 +62,7 @@ const Home = () => {
     <div className="home">
       {/* ── 1. HERO ── */}
       <section className="hero">
-        <div className="hero__bg" style={{ backgroundImage: `url(${art1})` }} />
+        <div className="hero__bg" style={{ backgroundImage: `url(${eucharistic})` }} />
         <div className="hero__overlay" />
         <div className="hero__content">
           <p className="hero__eyebrow">Art Studio</p>
@@ -123,19 +123,19 @@ const Home = () => {
           <div className="collections__grid">
             {[
               {
-                img: art2,
+                img: lion_lamb,
                 title: "Originals",
                 sub: "One-of-a-kind oil & acrylic paintings",
                 to: "/gallery",
               },
               {
-                img: cust6,
+                img: porch_swing,
                 title: "Custom Portraits",
                 sub: "Illustrated portraits of your cherished moments",
                 to: "/shop?category=Digital Custom Portraits",
               },
               {
-                img: ill1,
+                img: holyfamily,
                 title: "Illustrations",
                 sub: "Soft watercolor & devotional digital art",
                 to: "/shop?category=Prints",
@@ -162,7 +162,7 @@ const Home = () => {
         <div className="why__texture" />
         <div className="container why__inner">
           <div className="why__art">
-            <img src={art3} alt="Red Cardinal" />
+            <img src={redcardinal} alt="Red Cardinal" />
           </div>
           <div className="why__text">
             <span className="section-label section-label--light">
@@ -207,19 +207,19 @@ const Home = () => {
           <div className="collections__grid">
             {[
               {
-                img: cust8,
+                img: our_ladys_blessing,
                 title: "Wedding Portraits",
                 sub: "Celebrate your vows with a keepsake illustration",
                 to: "/shop?category=Digital Custom Portraits",
               },
               {
-                img: cust3,
+                img: sunset_couple,
                 title: "Couples & Families",
                 sub: "Capture a treasured moment together",
                 to: "/shop?category=Digital Custom Portraits",
               },
               {
-                img: cust5,
+                img: sisters_cathedral,
                 title: "Special Occasions",
                 sub: "First communions, graduations & more",
                 to: "/shop?category=Digital Custom Portraits",
@@ -275,7 +275,7 @@ const Home = () => {
               className="process__img process__img--main"
             />
             <img
-              src={ill4}
+              src={mary_jesus_water}
               alt="Child illustration"
               className="process__img process__img--accent"
             />
@@ -291,7 +291,7 @@ const Home = () => {
           style={{ flexDirection: "row-reverse" }}
         >
           <div className="why__art">
-            <img src={ill3} alt="The Good Shepherd illustration" />
+            <img src={pastor} alt="The Good Shepherd illustration" />
           </div>
           <div className="why__text">
             <span className="section-label section-label--light">
@@ -318,7 +318,7 @@ const Home = () => {
       <section className="email-signup">
         <div
           className="email-signup__bg"
-          style={{ backgroundImage: `url(${ill2})` }}
+          style={{ backgroundImage: `url(${mary})` }}
         />
         <div className="email-signup__overlay" />
         <div className="container email-signup__inner">
@@ -376,7 +376,7 @@ const Home = () => {
       {/* ── 9. FINAL CTA ── */}
       <section className="final-cta">
         <div className="container final-cta__inner">
-          <img src={ill5} alt="Our Lady of Grace" className="final-cta__art" />
+          <img src={mary_jesus_pastel} alt="Our Lady of Grace" className="final-cta__art" />
           <div className="final-cta__text">
             <h2 className="final-cta__heading">
               Bring a moment of peace
