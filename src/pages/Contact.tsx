@@ -254,6 +254,9 @@ const Contact = () => {
                     </option>
                     <option value="Original painting">Original painting</option>
                     <option value="Print order">Print order</option>
+                    <option value="Children's activities">
+                      Children's activities
+                    </option>
                     <option value="Wholesale / bulk">Wholesale / bulk</option>
                     <option value="Something else">Something else</option>
                   </select>
