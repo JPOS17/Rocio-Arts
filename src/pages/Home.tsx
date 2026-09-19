@@ -2,7 +2,7 @@ import "../styles/Global.css";
 import "../styles/Home.css";
 import { useState } from "react";
 
-// Originals
+// Oil / Acrylic Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
@@ -13,7 +13,7 @@ import cust5 from "../assets/customs/cust5.png";
 import cust6 from "../assets/customs/cust6.png";
 import cust8 from "../assets/customs/cust8.png";
 
-// Illustrations
+// Watercolor Illustrations
 import ill1 from "../assets/illustrations/ill1.png";
 import ill2 from "../assets/illustrations/ill2.png";
 import ill3 from "../assets/illustrations/ill3.png";
@@ -126,7 +126,7 @@ const Home = () => {
                 img: art2,
                 title: "Originals",
                 sub: "One-of-a-kind oil & acrylic paintings",
-                to: "/gallery?category=Originals",
+                to: "/gallery",
               },
               {
                 img: cust6,

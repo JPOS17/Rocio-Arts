@@ -1,13 +1,11 @@
 import "../styles/Global.css";
 import "../styles/Gallery.css";
+import { Link } from "react-router-dom";
 
 // Originals
 import art1 from "../assets/oil/art1.png";
 import art2 from "../assets/oil/art2.png";
 import art3 from "../assets/oil/art3.png";
-
-// Types
-type Category = "All" | "Originals";
 
 interface Artwork {
   id: number;
@@ -15,7 +13,7 @@ interface Artwork {
   title: string;
   medium: string;
   size?: string;
-  category: Exclude<Category, "All">;
+  category: "Originals";
   available: boolean;
   price?: string;
   printsAvailable?: boolean;
@@ -62,54 +60,15 @@ const artworks: Artwork[] = [
   },
 ];
 
-const CATEGORIES: Category[] = ["All", "Originals"];
-
 // Where the "See What's Available" tag should send someone: browse other
-// available pieces in the same category, or the full gallery if none are
-// left there.
-const getPrintsLink = (category: Artwork["category"]) => {
-  const hasAvailableInCategory = artworks.some(
-    (a) => a.category === category && a.available,
-  );
-  return hasAvailableInCategory
-    ? `/gallery?category=${encodeURIComponent(category)}`
-    : "/gallery";
+// available originals, or the full shop if the medium isn't for sale there.
+const getPrintsLink = () => {
+  const hasAvailable = artworks.some((a) => a.available);
+  return hasAvailable ? "/gallery" : "/shop";
 };
-
-// Component imports
-import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
 
 // Main Gallery
 const Gallery = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const categoryParam = searchParams.get("category");
-  const initialCategory: Category = CATEGORIES.includes(
-    categoryParam as Category,
-  )
-    ? (categoryParam as Category)
-    : "All";
-
-  const [active, setActive] = useState<Category>(initialCategory);
-  const [lightbox, setLightbox] = useState<Artwork | null>(null);
-
-  // Keeps the filter in sync if the category changes via URL and
-  // closes the lightbox whenever that happens.
-  useEffect(() => {
-    setActive(initialCategory);
-    setLightbox(null);
-  }, [categoryParam]);
-
-  const handleSetActive = (cat: Category) => {
-    setActive(cat);
-    setSearchParams(cat === "All" ? {} : { category: cat });
-  };
-
-  const filtered =
-    active === "All"
-      ? artworks
-      : artworks.filter((a) => a.category === active);
-
   return (
     <div className="gallery-page">
       {/* ── HERO ── */}
@@ -131,89 +90,63 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* ── FILTER BAR ── */}
-      <section className="gallery-filters">
-        <div className="container gallery-filters__inner">
-          <p className="gallery-filters__label">Filter by</p>
-          <div className="gallery-filters__tabs" role="tablist">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                role="tab"
-                aria-selected={active === cat}
-                className={`gallery-tab${active === cat ? " gallery-tab--active" : ""}`}
-                onClick={() => handleSetActive(cat)}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-          <p className="gallery-filters__count">
-            {filtered.length} {filtered.length === 1 ? "work" : "works"}
-          </p>
-        </div>
-      </section>
-
-      {/* ── GRID ── */}
-      <section className="gallery-grid-section">
-        <div className="container">
-          <div className="gallery-grid">
-            {filtered.map((art, i) => (
-              <article
-                key={`${active}-${art.id}`}
-                className="art-card"
-                style={{ animationDelay: `${i * 0.06}s` }}
-                onClick={() => setLightbox(art)}
-              >
-                <div className="art-card__img-wrap">
-                  <img src={art.img} alt={art.title} loading="lazy" />
-                  <div className="art-card__overlay">
-                    <span className="art-card__zoom">View</span>
+      {/* ── ORIGINALS SHOWCASE ── */}
+      <section className="originals-showcase-section">
+        {artworks.map((art, i) => (
+          <div
+            key={art.id}
+            className={`original-showcase${i % 2 === 1 ? " original-showcase--reverse" : ""}`}
+          >
+            <div className="container original-showcase__inner">
+              <div className="original-showcase__image-wrap">
+                <img src={art.img} alt={art.title} loading="lazy" />
+                {!art.available && (
+                  <span className="art-card__badge art-card__badge--sold">
+                    Sold
+                  </span>
+                )}
+              </div>
+              <div className="original-showcase__details">
+                <span className="section-label">{art.category}</span>
+                <h2 className="original-showcase__title">{art.title}</h2>
+                <p className="original-showcase__meta">
+                  {art.medium}
+                  {art.size ? ` · ${art.size}` : ""}
+                </p>
+                {art.price && (
+                  <p className="lightbox__price">{art.price}</p>
+                )}
+                {art.description && (
+                  <div className="lightbox__description lightbox__description--inline">
+                    <h3 className="lightbox__description-heading">
+                      About This Painting
+                    </h3>
+                    <p>{art.description}</p>
                   </div>
-                  {!art.available && (
-                    <span className="art-card__badge art-card__badge--sold">
-                      Sold
-                    </span>
+                )}
+                <div className="original-showcase__actions">
+                  {art.available ? (
+                    <Link to="/contact" className="btn btn--dark">
+                      Inquire About This Piece
+                    </Link>
+                  ) : (
+                    <p className="lightbox__sold">
+                      This piece has found its home!
+                    </p>
                   )}
-                  <span className="art-card__category">{art.category}</span>
+                  {art.printsAvailable && (
+                    <Link
+                      to={getPrintsLink()}
+                      className="art-card__prints-tag art-card__prints-tag--lightbox"
+                    >
+                      See What's Available
+                    </Link>
+                  )}
                 </div>
-                <div className="art-card__info">
-                  <h3 className="art-card__title">{art.title}</h3>
-                  <p className="art-card__medium">{art.medium}</p>
-                  <div className="art-card__footer">
-                    <span className="art-card__size">{art.size}</span>
-                    {art.price && (
-                      <span className="art-card__price">{art.price}</span>
-                    )}
-                  </div>
-                  <div className="art-card__actions">
-                    {art.available ? (
-                      <button className="btn btn--dark btn--sm art-card__btn">
-                        Inquire
-                      </button>
-                    ) : (
-                      <button
-                        className="btn btn--sm art-card__btn art-card__btn--disabled"
-                        disabled
-                      >
-                        Sold
-                      </button>
-                    )}
-                    {art.printsAvailable && (
-                      <Link
-                        to={getPrintsLink(art.category)}
-                        className="art-card__prints-tag"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        See What's Available
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
+              </div>
+            </div>
           </div>
-        </div>
+        ))}
       </section>
 
       {/* ── COMMISSION STRIP ── */}
@@ -239,69 +172,6 @@ const Gallery = () => {
           </div>
         </div>
       </section>
-
-      {/* ── LIGHTBOX ── */}
-      {lightbox && (
-        <div
-          className="lightbox"
-          onClick={(e) => {
-            if (e.target === e.currentTarget) setLightbox(null);
-          }}
-          role="dialog"
-          aria-modal="true"
-          aria-label={lightbox.title}
-        >
-          <div className="lightbox__card">
-            <button
-              className="lightbox__close"
-              onClick={() => setLightbox(null)}
-              aria-label="Close"
-            >
-              ✕
-            </button>
-            <div className="lightbox__img-wrap">
-              <img src={lightbox.img} alt={lightbox.title} />
-            </div>
-            <div className="lightbox__details">
-              <span className="section-label">{lightbox.category}</span>
-              <h2 className="lightbox__title">{lightbox.title}</h2>
-              <p className="lightbox__medium">{lightbox.medium}</p>
-              <p className="lightbox__size">{lightbox.size}</p>
-              {lightbox.price && (
-                <p className="lightbox__price">{lightbox.price}</p>
-              )}
-              {lightbox.description && (
-                <div className="lightbox__description">
-                  <h3 className="lightbox__description-heading">
-                    About This Painting
-                  </h3>
-                  <p>{lightbox.description}</p>
-                </div>
-              )}
-              <div className="lightbox__actions">
-                {lightbox.available ? (
-                  <Link to="/contact" className="btn btn--dark">
-                    Inquire About This Piece
-                  </Link>
-                ) : (
-                  <p className="lightbox__sold">
-                    This piece has found its home!
-                  </p>
-                )}
-                {lightbox.printsAvailable && (
-                  <Link
-                    to={getPrintsLink(lightbox.category)}
-                    className="art-card__prints-tag art-card__prints-tag--lightbox"
-                    onClick={() => setLightbox(null)}
-                  >
-                    See What's Available
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
