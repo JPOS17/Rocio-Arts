@@ -132,7 +132,7 @@ const Home = () => {
                 img: cust6,
                 title: "Custom Portraits",
                 sub: "Illustrated portraits of your cherished moments",
-                to: "/gallery?category=Custom Portraits",
+                to: "/shop?category=Digital Custom Portraits",
               },
               {
                 img: ill1,
@@ -210,19 +210,19 @@ const Home = () => {
                 img: cust8,
                 title: "Wedding Portraits",
                 sub: "Celebrate your vows with a keepsake illustration",
-                to: "/gallery",
+                to: "/shop?category=Digital Custom Portraits",
               },
               {
                 img: cust3,
                 title: "Couples & Families",
                 sub: "Capture a treasured moment together",
-                to: "/gallery",
+                to: "/shop?category=Digital Custom Portraits",
               },
               {
                 img: cust5,
                 title: "Special Occasions",
                 sub: "First communions, graduations & more",
-                to: "/gallery",
+                to: "/shop?category=Digital Custom Portraits",
               },
             ].map((col) => (
               <Link key={col.title} to={col.to} className="collection-card">
