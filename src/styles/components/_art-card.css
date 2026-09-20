@@ -1,0 +1,291 @@
+/* ==========================================================================
+   ART CARD + CARD GRID
+   Used by BOTH the Gallery and the Shop
+   ========================================================================== */
+
+/* ── GALLERY GRID ── */
+.card-grid-section {
+  padding: clamp(3.5rem, 7vw, 6rem) 0 clamp(5rem, 10vw, 8rem);
+  background: var(--cream);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+/* ── ART CARD ── */
+.art-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  cursor: pointer;
+  animation: fadeUp 0.6s both;
+  display: flex;
+  flex-direction: column;
+}
+
+.art-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+.art-card__img-wrap {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--cream-dark);
+}
+
+.art-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+
+.art-card:hover .art-card__img-wrap img {
+  transform: scale(1.05);
+}
+
+.art-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 35, 64, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.art-card:hover .art-card__overlay {
+  opacity: 1;
+}
+
+.art-card__zoom {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: 0.12em;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius);
+}
+
+.art-card__badge {
+  position: absolute;
+  top: 0.875rem;
+  right: 0.875rem;
+  font-size: var(--fs-micro);
+  font-weight: 700;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius);
+  z-index: 2;
+}
+
+.art-card__badge--sold {
+  background: rgba(26, 35, 64, 0.85);
+  color: var(--text-on-dark-muted);
+}
+
+.art-card__category {
+  position: absolute;
+  bottom: 0.875rem;
+  left: 0.875rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  z-index: 2;
+}
+
+.art-card__info {
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.art-card__title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: var(--lh-tight);
+}
+
+.art-card__medium {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.art-card__footer {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.art-card__size {
+  font-size: 0.78rem;
+  color: var(--text-mid);
+  letter-spacing: 0.04em;
+}
+
+.art-card__price {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.art-card__btn {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.art-card__btn--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: var(--cream-dark);
+  color: var(--text-mid);
+  border: 1.5px solid var(--text-light);
+}
+
+.art-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.art-card__actions .art-card__btn {
+  margin-top: 0;
+}
+
+.art-card__prints-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gold-light, var(--gold-light));
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.art-card__prints-tag--lightbox {
+  cursor: pointer;
+}
+
+.art-card__prints-tag--lightbox:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+}
+/* Readable badge: the default gold label disappears on light product photos */
+.art-card__category--badge {
+  background: var(--navy);
+  color: var(--gold-light);
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius);
+}
+/* Card image is a button so the whole picture opens the pop-up */
+.art-card__img-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  display: block;
+  cursor: zoom-in;
+}
+
+.art-card__img-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -4px;
+}
+/* Prev / next arrows on cards with more than one photo */
+.art-card__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy);
+  box-shadow: 0 2px 10px rgba(26, 35, 64, 0.22);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.art-card__arrow--prev { left: 0.6rem;
+}
+
+.art-card__arrow--next { right: 0.6rem;
+}
+
+.art-card__arrow:hover {
+  background: var(--navy);
+  color: var(--cream);
+}
+
+.art-card__arrow:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .art-card__arrow {
+    opacity: 0;
+  }
+  .art-card:hover .art-card__arrow,
+  .art-card:focus-within .art-card__arrow {
+    opacity: 1;
+  }
+}
+
+/* ── ENTRY STAGGER ──────────────────────────────────────────────────────
+   The component passes only the card's index as --card-index; the timing
+   itself is defined here, not in the TSX. */
+.art-card {
+  animation-delay: calc(var(--card-index, 0) * 0.06s);
+}

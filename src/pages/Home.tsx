@@ -1,6 +1,4 @@
-import "../styles/Global.css";
-import "../styles/Home.css";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 // Oil / Acrylic Originals
 import eucharistic from "../assets/originals/eucharistic.png";
@@ -61,30 +59,30 @@ const Home = () => {
   return (
     <div className="home">
       {/* ── 1. HERO ── */}
-      <section className="hero">
-        <div className="hero__bg" style={{ backgroundImage: `url(${eucharistic})` }} />
-        <div className="hero__overlay" />
-        <div className="hero__content">
-          <p className="hero__eyebrow">Art Studio</p>
-          <h1 className="hero__headline">
+      <section className="page-hero page-hero--full">
+        <div
+          className="page-hero__bg"
+          style={{ "--bg-image": `url(${eucharistic})` } as CSSProperties}
+        />
+        <div className="page-hero__overlay" />
+        <div className="page-hero__content">
+          <p className="page-hero__eyebrow">Art Studio</p>
+          <h1 className="page-hero__headline">
             Faith-inspired artwork
             <br /> 
             that invites you
             <br />
             into prayerful moments
           </h1>
-          <p className="hero__sub">
+          <p className="page-hero__sub">
             Original paintings and prints created to deepen your connection with
             God
           </p>
-          <div className="hero__ctas">
+          <div className="page-hero__ctas">
             <Link to="/gallery" className="btn btn--outline-light">
               View Gallery
             </Link>
           </div>
-        </div>
-        <div className="hero__scroll-hint">
-          <span />
         </div>
       </section>
 
@@ -191,15 +189,7 @@ const Home = () => {
         <div className="container">
           <span className="section-label">Custom Work</span>
           <h2 className="section-heading">Portraits Made for You</h2>
-          <p
-            style={{
-              textAlign: "center",
-              maxWidth: "560px",
-              margin: "0 auto 2.5rem",
-              color: "var(--text-mid, #666)",
-              lineHeight: 1.7,
-            }}
-          >
+          <p className="section-intro">
             Every family, wedding, and milestone deserves to be remembered
             beautifully. Commission a custom illustrated portrait — a
             one-of-a-kind gift that lasts a lifetime.
@@ -238,7 +228,7 @@ const Home = () => {
               </Link>
             ))}
           </div>
-          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+          <div className="section-actions">
             <Link to="/contact" className="btn btn--dark">
               Start a Commission
             </Link>
@@ -286,10 +276,7 @@ const Home = () => {
       {/* ── 7. FAITH ILLUSTRATIONS STRIP ── */}
       <section className="why">
         <div className="why__texture" />
-        <div
-          className="container why__inner"
-          style={{ flexDirection: "row-reverse" }}
-        >
+        <div className="container why__inner why__inner--reverse">
           <div className="why__art">
             <img src={pastor} alt="The Good Shepherd illustration" />
           </div>
@@ -318,7 +305,7 @@ const Home = () => {
       <section className="email-signup">
         <div
           className="email-signup__bg"
-          style={{ backgroundImage: `url(${mary})` }}
+          style={{ "--bg-image": `url(${mary})` } as CSSProperties}
         />
         <div className="email-signup__overlay" />
         <div className="container email-signup__inner">
@@ -331,7 +318,7 @@ const Home = () => {
             delivered to your inbox
           </p>
           {status === "success" ? (
-            <p style={{ color: "#fff", fontSize: "1.1rem", marginTop: "1rem" }}>
+            <p className="email-signup__message">
               Thank you for subscribing to the studio!
             </p>
           ) : (
@@ -347,24 +334,14 @@ const Home = () => {
                 />
                 <button
                   type="submit"
-                  className="btn btn--light"
+                  className="btn btn--light btn--static"
                   disabled={status === "loading"}
-                  style={{ transform: "none" }}
-                  onMouseOver={(e) =>
-                    (e.currentTarget.style.transform = "none")
-                  }
                 >
                   {status === "loading" ? "Subscribing…" : "Subscribe"}
                 </button>
               </form>
               {status === "error" && (
-                <p
-                  style={{
-                    color: "#ffaaaa",
-                    marginTop: "0.75rem",
-                    fontSize: "0.9rem",
-                  }}
-                >
+                <p className="email-signup__error">
                   Please enter a valid email address.
                 </p>
               )}

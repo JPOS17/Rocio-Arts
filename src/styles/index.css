@@ -1,0 +1,41 @@
+/* ==========================================================================
+   STYLE ENTRY POINT
+
+   The import order below IS the cascade order, and it goes from least
+   specific to most specific so that later layers can override earlier ones
+   without anyone needing !important:
+
+     1. abstracts  variables only — emits no CSS rules
+     2. base       bare element defaults and keyframes
+     3. layout     structural primitives (container, section, grid)
+     4. components reusable UI blocks (button, navbar, card, hero...)
+     5. pages      page-specific decoration, scoped to a page class
+
+   ========================================================================== */
+
+/* 1. ABSTRACTS ─────────────────────────────────────────────────────────── */
+@import "./abstracts/_tokens.css";
+
+/* 2. BASE ──────────────────────────────────────────────────────────────── */
+@import "./base/_reset.css";
+@import "./base/_animations.css";
+
+/* 3. LAYOUT ────────────────────────────────────────────────────────────── */
+@import "./layout/_layout.css";
+
+/* 4. COMPONENTS ────────────────────────────────────────────────────────── */
+@import "./components/_typography.css";
+@import "./components/_button.css";
+@import "./components/_navbar.css";
+@import "./components/_footer.css";
+@import "./components/_page-hero.css";
+@import "./components/_art-card.css";
+@import "./components/_filter-tabs.css";
+@import "./components/_lightbox.css";
+
+/* 5. PAGES ─────────────────────────────────────────────────────────────── */
+@import "./pages/_home.css";
+@import "./pages/_about.css";
+@import "./pages/_gallery.css";
+@import "./pages/_shop.css";
+@import "./pages/_contact.css";

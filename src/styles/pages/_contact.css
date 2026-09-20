@@ -1,61 +1,22 @@
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+
+/* ── HERO ── (structure lives in components/_page-hero.css)
+   No photograph here — the gold radial texture stands in for the image. */
+.contact-page .page-hero {
+  --hero-height: 48svh;
+  --hero-min-height: 340px;
+  --hero-content-pad: clamp(3rem, 6vw, 4.5rem);
+}
+
 .contact-page {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
-
-
-/* ── HERO ── */
-
-.contact-page .contact-hero {
-  position: relative;
-  height: 48svh;
-  min-height: 340px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--navy);
-}
-
-.contact-page .contact-hero__texture {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(ellipse at 15% 60%, rgba(185, 144, 74, 0.12) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 25%, rgba(185, 144, 74, 0.08) 0%, transparent 55%);
-  pointer-events: none;
-}
-
-.contact-page .contact-hero__content {
-  position: relative;
-  z-index: 2;
-  padding-bottom: clamp(3rem, 6vw, 4.5rem);
-  animation: fadeUp 1s 0.2s both;
-}
-
-.contact-page .contact-hero__headline {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  margin-bottom: 0.75rem;
-}
-
-.contact-page .contact-hero__sub {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(248, 244, 239, 0.65);
-  letter-spacing: 0.04em;
-  max-width: 480px;
+  background: var(--surface);
 }
 
 /* ── MAIN CONTENT — two-column layout ── */
 .contact-page .contact-body {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--white);
 }
 
@@ -77,13 +38,13 @@
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 400;
   color: var(--navy);
-  line-height: 1.2;
+  line-height: var(--lh-tight);
   margin-bottom: 1.25rem;
 }
 
 .contact-page .contact-info__body {
   font-size: 1rem;
-  line-height: 1.85;
+  line-height: var(--lh-loose);
   color: var(--text-mid);
   margin-bottom: 2.5rem;
 }
@@ -116,7 +77,7 @@
 .contact-page .contact-detail__label {
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--gold);
   margin-bottom: 0.2rem;
@@ -133,6 +94,7 @@
   text-decoration: none;
   transition: color var(--transition);
 }
+
 .contact-page .contact-detail__value a:hover {
   color: var(--navy);
 }
@@ -157,6 +119,7 @@
   padding: 0.55rem 1rem;
   transition: var(--transition);
 }
+
 .contact-page .contact-social__link:hover {
   color: var(--navy);
   border-color: var(--navy);
@@ -203,7 +166,7 @@
 }
 
 .contact-page .form-label {
-  font-size: 0.7rem;
+  font-size: var(--fs-label);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -241,6 +204,7 @@
 .contact-page .form-select-wrap {
   position: relative;
 }
+
 .contact-page .form-select-wrap::after {
   content: '';
   position: absolute;
@@ -299,11 +263,10 @@
 
 .contact-page .commission-callout__body {
   font-size: 0.95rem;
-  line-height: 1.8;
+  line-height: var(--lh-body);
   color: var(--text-mid);
   max-width: 560px;
 }
-
 
 /* ── FAQ SECTION ── */
 .contact-page .faq {
@@ -326,16 +289,16 @@
 .contact-page .faq__inner {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: clamp(3rem, 6vw, 7rem);
+  gap: var(--split-gap);
   align-items: start;
 }
 
 .contact-page .faq__heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 300;
   color: var(--white);
-  line-height: 1.2;
+  line-height: var(--lh-tight);
   position: sticky;
   top: 2rem;
 }
@@ -347,11 +310,12 @@
 }
 
 .contact-page .faq-item {
-  border-top: 1px solid rgba(248, 244, 239, 0.1);
+  border-top: 1px solid var(--border-on-dark);
   padding: 1.5rem 0;
 }
+
 .contact-page .faq-item:last-child {
-  border-bottom: 1px solid rgba(248, 244, 239, 0.1);
+  border-bottom: 1px solid var(--border-on-dark);
 }
 
 .contact-page .faq-item__q {
@@ -365,12 +329,10 @@
 
 .contact-page .faq-item__a {
   font-size: 0.95rem;
-  line-height: 1.85;
+  line-height: var(--lh-loose);
   color: rgba(248, 244, 239, 0.68);
 }
 
-
-/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .contact-page .faq__inner {
     grid-template-columns: 1fr;
@@ -396,23 +358,19 @@
 }
 
 @media (max-width: 480px) {
-  .contact-page .contact-hero__headline {
-    font-size: clamp(2.5rem, 10vw, 3.5rem);
-  }
   .contact-page .contact-form-wrap {
     padding: 1.5rem;
   }
 }
 
 /* ── Form validation & toast ── */
-
 .contact-page .form-input--error {
-  border-color: #c0392b !important;
+  border-color: var(--error);
 }
 
 .contact-page .form-error {
   font-size: 0.75rem;
-  color: #c0392b;
+  color: var(--error);
   margin-top: 0.15rem;
 }
 
@@ -426,27 +384,21 @@
   font-size: 0.95rem;
   font-weight: 600;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  z-index: 9999;
+  z-index: var(--z-toast);
   white-space: nowrap;
   animation: toast-in 0.3s ease forwards, toast-out 0.4s ease 4.6s forwards;
 }
 
 .contact-page .form-toast--success {
-  background: #1a2340;
-  color: #fff;
-  border: 1px solid rgba(185, 144, 74, 0.4);
+  background: var(--navy);
+  color: var(--white);
+  border: 1px solid var(--border-gold);
 }
 
 .contact-page .form-toast--error {
-  background: #c0392b;
-  color: #fff;
+  background: var(--error);
+  color: var(--white);
 }
-
-@keyframes toast-in {
-  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
-  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-}
-
 @keyframes toast-out {
   from { opacity: 1; transform: translateX(-50%) translateY(0); }
   to   { opacity: 0; transform: translateX(-50%) translateY(16px); }

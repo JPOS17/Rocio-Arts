@@ -1,5 +1,4 @@
-import "../styles/Global.css";
-import "../styles/About.css";
+import type { CSSProperties } from "react";
 
 import headshot1 from "../assets/personal/headshot3.png";
 import { Link } from "react-router-dom";
@@ -42,16 +41,16 @@ const About = () => {
   return (
     <div className="about-page">
       {/* ── 1. EDITORIAL HERO ── */}
-      <section className="about-hero">
+      <section className="page-hero">
         <div
-          className="about-hero__bg"
-          style={{ backgroundImage: `url(${headshot1})` }}
+          className="page-hero__bg"
+          style={{ "--bg-image": `url(${headshot1})` } as CSSProperties}
         />
-        <div className="about-hero__overlay" />
-        <div className="about-hero__content container">
+        <div className="page-hero__overlay" />
+        <div className="page-hero__content">
           <span className="section-label section-label--light">The Artist</span>
-          <h1 className="about-hero__name">Rocio Ortiz</h1>
-          <p className="about-hero__title">
+          <h1 className="page-hero__headline">Rocio Ortiz</h1>
+          <p className="page-hero__caption">
             Painter · Illustrator · Catholic Artist
           </p>
         </div>

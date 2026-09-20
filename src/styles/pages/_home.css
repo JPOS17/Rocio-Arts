@@ -1,113 +1,32 @@
-.home {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
+/* ==========================================================================
+   HOME PAGE
+   ========================================================================== */
 
-
-/* ── HERO ── */
-.home .hero {
-  position: relative;
-  height: 100svh;
-  min-height: 620px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-}
-
-.home .hero__bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 30%;
-  transform: scale(1.06);
-  animation: heroZoom 18s ease-out forwards;
-}
-
-.home .hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
+/* ── HERO ── (structure lives in components/_page-hero.css) */
+.home .page-hero {
+  --hero-focus: center 30%;
+  --hero-overlay: linear-gradient(
     to bottom,
-    rgba(26, 35, 64, 0.55) 0%,
-    rgba(26, 35, 64, 0.40) 50%,
-    rgba(26, 35, 64, 0.70) 100%
+    rgba(var(--navy-rgb), 0.55) 0%,
+    rgba(var(--navy-rgb), 0.40) 50%,
+    rgba(var(--navy-rgb), 0.70) 100%
   );
 }
 
-.home .hero__content {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
-  padding: 0 1.5rem;
-  animation: fadeUp 1.2s 0.3s both;
+.home {
+  background: var(--surface);
 }
-
-.home .hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 1.25rem;
-}
-
-.home .hero__headline {
-  font-family: var(--font-display);
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.18;
-  margin-bottom: 1.25rem;
-  letter-spacing: 0.01em;
-}
-
-.home .hero__sub {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(248, 244, 239, 0.82);
-  margin-bottom: 2.5rem;
-  letter-spacing: 0.04em;
-}
-
-.home .hero__ctas {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.home .hero__scroll-hint {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-.home .hero__scroll-hint span {
-  display: block;
-  width: 1px;
-  height: 52px;
-  background: linear-gradient(to bottom, transparent, rgba(248, 244, 239, 0.6));
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
 
 /* ── INTRO ── */
 .home .intro {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--white);
 }
 
 .home .intro__inner {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
-  gap: clamp(3rem, 6vw, 6rem);
+  gap: var(--split-gap);
   align-items: center;
 }
 
@@ -138,26 +57,26 @@
 
 .home .intro__heading {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 400;
   color: var(--navy);
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .home .intro__body {
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: var(--lh-body);
   color: var(--text-mid);
   margin-bottom: 1.25rem;
 }
 
-.home .intro__text .btn { margin-top: 1rem; }
-
+.home .intro__text .btn { margin-top: 1rem;
+}
 
 /* ── COLLECTIONS ── */
 .home .collections {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--cream);
 }
 
@@ -177,6 +96,7 @@
   transition: var(--transition);
   background: var(--white);
 }
+
 .home .collection-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-hover);
@@ -187,15 +107,18 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
+
 .home .collection-card__img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease;
 }
+
 .home .collection-card:hover .collection-card__img-wrap img {
   transform: scale(1.05);
 }
+
 .home .collection-card__overlay {
   position: absolute;
   inset: 0;
@@ -205,6 +128,7 @@
 .home .collection-card__text {
   padding: 1.5rem;
 }
+
 .home .collection-card__text h3 {
   font-family: var(--font-display);
   font-size: 1.5rem;
@@ -212,12 +136,14 @@
   color: var(--navy);
   margin-bottom: 0.4rem;
 }
+
 .home .collection-card__text p {
-  font-size: 0.875rem;
+  font-size: var(--fs-sm);
   color: var(--text-mid);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
+
 .home .collection-card__link {
   font-size: 0.75rem;
   font-weight: 700;
@@ -226,11 +152,10 @@
   color: var(--gold);
 }
 
-
 /* ── WHY / MISSION ── */
 .home .why {
   position: relative;
-  padding: clamp(5rem, 10vw, 9rem) 0;
+  padding-block: var(--section-y-lg);
   background: var(--navy);
   overflow: hidden;
 }
@@ -247,16 +172,21 @@
 .home .why__inner {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: clamp(3rem, 6vw, 7rem);
+  gap: var(--split-gap);
   align-items: center;
+}
+
+.home .why__inner--reverse > *:first-child {
+  order: 2;
 }
 
 .home .why__art {
   border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow-deep);
   aspect-ratio: 3/4;
 }
+
 .home .why__art img {
   width: 100%;
   height: 100%;
@@ -266,17 +196,17 @@
 
 .home .why__heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 300;
   color: var(--white);
-  line-height: 1.2;
+  line-height: var(--lh-tight);
   margin-bottom: 1.5rem;
 }
 
 .home .why__body {
   font-size: 1rem;
-  line-height: 1.85;
-  color: rgba(248, 244, 239, 0.75);
+  line-height: var(--lh-loose);
+  color: var(--text-on-dark);
   margin-bottom: 1.5rem;
 }
 
@@ -291,10 +221,9 @@
   line-height: 1.6;
 }
 
-
 /* ── PRODUCTS ── */
 .home .products {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--cream-dark);
 }
 
@@ -313,6 +242,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .home .product-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
@@ -323,6 +253,7 @@
   aspect-ratio: 4/5;
   overflow: hidden;
 }
+
 .home .product-card__img-wrap img {
   width: 100%;
   height: 100%;
@@ -330,16 +261,18 @@
   transition: transform 0.5s ease;
   display: block;
 }
+
 .home .product-card:hover .product-card__img-wrap img {
   transform: scale(1.04);
 }
+
 .home .product-card__tag {
   position: absolute;
   top: 0.75rem;
   left: 0.75rem;
-  font-size: 0.62rem;
+  font-size: var(--fs-micro);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   background: var(--navy);
   color: var(--cream);
@@ -355,6 +288,7 @@
   gap: 0.4rem;
   flex: 1;
 }
+
 .home .product-card__info h4 {
   font-family: var(--font-display);
   font-size: 1.2rem;
@@ -362,40 +296,42 @@
   color: var(--navy);
   line-height: 1.25;
 }
+
 .home .product-card__price {
   font-family: var(--font-display);
   font-size: 1.1rem;
   color: var(--text-mid);
   font-weight: 500;
 }
-.home .product-card__info .btn { align-self: flex-start; margin-top: 0.25rem; }
 
+.home .product-card__info .btn { align-self: flex-start; margin-top: 0.25rem;
+}
 
 /* ── PROCESS ── */
 .home .process {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--white);
 }
 
 .home .process__inner {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  gap: clamp(3rem, 6vw, 6rem);
+  gap: var(--split-gap);
   align-items: center;
 }
 
 .home .process__heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 400;
   color: var(--navy);
-  line-height: 1.2;
+  line-height: var(--lh-tight);
   margin-bottom: 1.5rem;
 }
 
 .home .process__body {
   font-size: 1rem;
-  line-height: 1.85;
+  line-height: var(--lh-loose);
   color: var(--text-mid);
   margin-bottom: 1.25rem;
 }
@@ -426,10 +362,9 @@
   border: 4px solid var(--white);
 }
 
-
 /* ── TESTIMONIALS ── */
 .home .testimonials {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--cream);
 }
 
@@ -447,6 +382,7 @@
   border-top: 3px solid var(--gold);
   transition: var(--transition);
 }
+
 .home .testimonial-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
@@ -473,22 +409,23 @@
   flex-direction: column;
   gap: 0.2rem;
 }
+
 .home .testimonial-card__author strong {
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--navy);
   letter-spacing: 0.04em;
 }
+
 .home .testimonial-card__author span {
   font-size: 0.78rem;
   color: var(--text-light);
 }
 
-
 /* ── EMAIL SIGNUP ── */
 .home .email-signup {
   position: relative;
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   overflow: hidden;
   text-align: center;
 }
@@ -505,7 +442,7 @@
 .home .email-signup__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(26, 35, 64, 0.65);
+  background: var(--scrim-navy);
 }
 
 .home .email-signup__inner {
@@ -516,16 +453,16 @@
 
 .home .email-signup__heading {
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 300;
   color: var(--white);
   margin-bottom: 1rem;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .home .email-signup__sub {
   font-size: 1rem;
-  color: rgba(248, 244, 239, 0.8);
+  color: var(--text-on-dark);
   margin-bottom: 2.5rem;
   line-height: 1.7;
 }
@@ -542,7 +479,7 @@
   padding: 0.9rem 1.25rem;
   font-family: var(--font-body);
   font-size: 0.9rem;
-  border: 1.5px solid rgba(248, 244, 239, 0.3);
+  border: 1.5px solid var(--text-on-dark-ghost);
   background: rgba(255, 255, 255, 0.08);
   color: var(--white);
   outline: none;
@@ -551,27 +488,30 @@
   backdrop-filter: blur(4px);
   transition: var(--transition);
 }
-.home .email-signup__input::placeholder { color: rgba(248, 244, 239, 0.45); }
+
+.home .email-signup__input::placeholder { color: var(--text-on-dark-faint);
+}
+
 .home .email-signup__input:focus {
   border-color: var(--gold-light);
   background: rgba(255, 255, 255, 0.12);
 }
+
 .home .email-signup__form .btn {
   border-radius: 0 var(--radius) var(--radius) 0;
   white-space: nowrap;
 }
 
-
 /* ── FINAL CTA ── */
 .home .final-cta {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--cream-dark);
 }
 
 .home .final-cta__inner {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: clamp(3rem, 6vw, 6rem);
+  gap: var(--split-gap);
   align-items: center;
 }
 
@@ -599,129 +539,46 @@
   margin-bottom: 2rem;
 }
 
-
-/* ── FOOTER ── */
-.footer {
-  background: var(--navy);
-  color: rgba(248, 244, 239, 0.7);
-  padding: 4rem 0 0;
-}
-
-.footer__inner {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 2.5rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(248, 244, 239, 0.1);
-}
-
-.footer__name {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: var(--cream);
-  margin-bottom: 0.5rem;
-}
-
-.footer__tagline {
-  font-size: 0.8rem;
-  line-height: 1.6;
-  color: rgba(248, 244, 239, 0.5);
-  max-width: 220px;
-}
-
-.footer__links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.footer__links h4 {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 0.5rem;
-}
-
-.footer__links a {
-  font-size: 0.875rem;
-  color: rgba(248, 244, 239, 0.6);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer__links a:hover { color: var(--cream); }
-
-.footer__social h4 {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 0.75rem;
-}
-
-.footer__ig {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  text-decoration: none;
-  color: rgba(248, 244, 239, 0.65);
-  font-size: 0.875rem;
-  transition: color 0.2s;
-}
-.footer__ig:hover { color: var(--gold-light); }
-
-.footer__bottom {
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.75rem;
-  color: rgba(248, 244, 239, 0.3);
-}
-
-
-/* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .home .collections__grid,
   .home .products__grid,
   .home .testimonials__grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .footer__inner {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 @media (max-width: 768px) {
+  /* Stacked: always lead with the image, whatever the desktop order */
+  .home .why__inner--reverse > *:first-child { order: 0; }
+
   .home .intro__inner,
   .home .why__inner,
   .home .process__inner,
   .home .final-cta__inner {
     grid-template-columns: 1fr;
   }
-
   .home .intro__image-wrap,
-  .home .why__art { max-width: 400px; }
-
-  .home .process__images { margin-top: 2rem; min-height: 320px; }
-  .home .process__img--main { width: 75%; }
-  .home .process__img--accent { right: 0; bottom: -1rem; }
-
+  .home .why__art {
+    max-width: 400px;
+  }
+  .home .process__images { margin-top: 2rem; min-height: 320px;
+  }
+  .home .process__img--main { width: 75%;
+  }
+  .home .process__img--accent { right: 0; bottom: -1rem;
+  }
   .home .collections__grid,
   .home .products__grid,
   .home .testimonials__grid {
     grid-template-columns: 1fr;
   }
-
-  .footer__inner { grid-template-columns: 1fr 1fr; }
-
-  .home .email-signup__form { flex-direction: column; }
+  .home .email-signup__form { flex-direction: column;
+  }
   .home .email-signup__input,
   .home .email-signup__form .btn {
     border-radius: var(--radius);
-    border-right: 1.5px solid rgba(248, 244, 239, 0.3);
-    border-top: 1.5px solid rgba(248, 244, 239, 0.3);
+    border-right: 1.5px solid var(--text-on-dark-ghost);
+    border-top: 1.5px solid var(--text-on-dark-ghost);
     width: 100%;
   }
   .home .email-signup__input {
@@ -732,8 +589,15 @@
     border-radius: 0 0 var(--radius) var(--radius);
   }
 }
+/* Feedback messages under the newsletter form */
+.home .email-signup__message {
+  margin-top: var(--space-md);
+  font-size: var(--fs-lg);
+  color: var(--white);
+}
 
-@media (max-width: 480px) {
-  .footer__inner { grid-template-columns: 1fr; }
-  .home .hero__ctas { flex-direction: column; align-items: center; }
+.home .email-signup__error {
+  margin-top: var(--space-sm);
+  font-size: 0.9rem;
+  color: var(--error-on-dark);
 }

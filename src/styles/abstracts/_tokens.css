@@ -1,0 +1,137 @@
+/* ==========================================================================
+   TOKENS — the single source of truth for the design system
+   ========================================================================== */
+
+:root {
+  /* ── BRAND PALETTE (unchanged from the original theme) ─────────────── */
+  --cream:            #f8f4ef;
+  --cream-dark:       #efe9e1;
+  --navy:             #1a2340;
+  --navy-light:       #2b3a5e;
+  --gold:             #b9904a;
+  --gold-light:       #d4b483;
+  --white:            #ffffff;
+
+  /* RGB channel lists, so we can build alpha variants without re-typing hex */
+  --cream-rgb:        248, 244, 239;
+  --navy-rgb:         26, 35, 64;
+  --gold-rgb:         185, 144, 74;
+
+  /* ── SEMANTIC SURFACES ─────────────────────────────────────────────── */
+  --surface:          var(--cream);       /* default page background      */
+  --surface-alt:      var(--cream-dark);  /* alternating band             */
+  --surface-raised:   var(--white);       /* cards, panels                */
+  --surface-invert:   var(--navy);        /* dark sections, nav, footer   */
+
+  /* ── TEXT ──────────────────────────────────────────────────────────── */
+  --text-dark:        #1c1c1c;
+  --text-mid:         #5a5550;
+  --text-light:       #9a948e;
+
+  /* Text sitting on a navy / photographic background */
+  --text-on-dark:         rgba(var(--cream-rgb), 0.82);
+  --text-on-dark-strong:  var(--cream);
+  --text-on-dark-muted:   rgba(var(--cream-rgb), 0.65);
+  --text-on-dark-faint:   rgba(var(--cream-rgb), 0.45);
+  --text-on-dark-ghost:   rgba(var(--cream-rgb), 0.30);
+
+  /* ── BORDERS & SCRIMS ──────────────────────────────────────────────── */
+  --border-on-dark:        rgba(var(--cream-rgb), 0.12);
+  --border-on-dark-strong: rgba(var(--cream-rgb), 0.35);
+  --border-gold:           rgba(var(--gold-rgb), 0.50);
+  --scrim-navy:            rgba(var(--navy-rgb), 0.65);
+  --scrim-navy-heavy:      rgba(var(--navy-rgb), 0.94);
+  --wash-gold:             rgba(var(--gold-rgb), 0.12);
+
+  /* ── FEEDBACK ──────────────────────────────────────────────────────── */
+  --error:            #b4442e;
+  --error-on-dark:    #ffaaaa;
+  --success:          #4a7c59;
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────────────────── */
+  --font-display:     'Cormorant Garamond', Georgia, serif;
+  --font-body:        'Lato', system-ui, -apple-system, sans-serif;
+
+  /* Fluid headings — no media queries needed for type */
+  --fs-hero:          clamp(2.2rem, 5.5vw, 4rem);
+  --fs-h2:            clamp(2rem, 4vw, 3rem);
+  --fs-h3:            1.5rem;
+  --fs-h4:            1.2rem;
+  --fs-lg:            1.1rem;
+  --fs-base:          1rem;
+  --fs-sm:            0.875rem;
+  --fs-xs:            0.8rem;
+  --fs-label:         0.7rem;   /* uppercase eyebrows, nav links, buttons */
+  --fs-micro:         0.62rem;  /* tags, badges                          */
+
+  --lh-tight:         1.2;
+  --lh-snug:          1.6;
+  --lh-body:          1.75;
+  --lh-loose:         1.85;
+
+  --tracking-label:   0.18em;
+  --tracking-wide:    0.22em;
+  --tracking-wider:   0.30em;
+
+  /* ── SPACING ───────────────────────────────────────────────────────── */
+  --space-3xs:        0.25rem;
+  --space-2xs:        0.4rem;
+  --space-xs:         0.6rem;
+  --space-sm:         0.75rem;
+  --space-md:         1rem;
+  --space-lg:         1.5rem;
+  --space-xl:         2rem;
+  --space-2xl:        2.5rem;
+  --space-3xl:        4rem;
+
+  /* Rhythm used by every full-width section and grid — tuned once, here */
+  --section-y:        clamp(5rem, 10vw, 8rem);
+  --section-y-lg:     clamp(5rem, 10vw, 9rem);
+  --split-gap:        clamp(3rem, 6vw, 6rem);
+  --grid-gap:         1.5rem;
+
+  /* ── LAYOUT ────────────────────────────────────────────────────────── */
+  --content-max:      1200px;
+  --measure:          560px;   /* comfortable reading width for intro copy */
+  --gutter:           clamp(1.5rem, 5vw, 4rem);
+  --nav-height:       70px;
+
+  /* ── SHAPE, DEPTH, MOTION ──────────────────────────────────────────── */
+  --radius:           2px;
+  --radius-pill:      50%;
+
+  --shadow-card:      0 4px 32px rgba(var(--navy-rgb), 0.10);
+  --shadow-hover:     0 12px 48px rgba(var(--navy-rgb), 0.18);
+  --shadow-nav:       0 2px 24px rgba(var(--navy-rgb), 0.18);
+  --shadow-deep:      0 16px 64px rgba(0, 0, 0, 0.40);
+
+  --ease:             cubic-bezier(0.4, 0, 0.2, 1);
+  --transition:       0.35s var(--ease);
+  --transition-fast:  0.25s ease;
+  --transition-slow:  0.60s ease;
+
+  /* ── Z-INDEX SCALE ─────────────────────────────────────────────────── */
+  --z-base:           1;
+  --z-raised:         2;
+  --z-overlay:        3;
+  --z-sticky:         40;
+  --z-nav:            100;
+  --z-lightbox:       1000;
+  --z-toast:          1100;
+}
+
+/* ──────────────────────────────────────────────────────────────────────
+   BREAKPOINTS
+
+   Custom properties cannot be used inside @media, so the scale lives here
+   as documentation. Use ONLY these five values anywhere in the codebase:
+
+     --bp-xs   480px    phones
+     --bp-sm   640px    large phones / small tablets portrait
+     --bp-md   768px    tablets — the main "stack the layout" breakpoint
+     --bp-lg   1024px   small laptops — drop 3-col grids to 2-col
+     --bp-xl   1280px   wide desktop
+
+   Mobile-first would use min-width; this codebase is written desktop-first
+   with max-width, which is fine as long as it stays consistent.
+   ────────────────────────────────────────────────────────────────────── */

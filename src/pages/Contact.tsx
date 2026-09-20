@@ -1,7 +1,5 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import "../styles/Global.css";
-import "../styles/Contact.css";
 import { Link, useSearchParams } from "react-router-dom";
 import { Clock, Mail, MapPin } from "lucide-react";
 
@@ -89,14 +87,14 @@ const Contact = () => {
   return (
     <div className="contact-page">
       {/* ── 1. HERO ── */}
-      <section className="contact-hero">
-        <div className="contact-hero__texture" />
-        <div className="contact-hero__content container">
+      <section className="page-hero">
+        <div className="page-hero__texture" />
+        <div className="page-hero__content">
           <span className="section-label section-label--light">
             Get in Touch
           </span>
-          <h1 className="contact-hero__headline">Let's talk</h1>
-          <p className="contact-hero__sub">
+          <h1 className="page-hero__headline">Let's talk</h1>
+          <p className="page-hero__sub">
             Whether you're interested in an original, a print, or a custom
             commission — I'd love to hear from you.
           </p>

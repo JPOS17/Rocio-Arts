@@ -1,0 +1,86 @@
+/* ==========================================================================
+   LAYOUT PRIMITIVES
+
+   Reusable structural pieces 
+   These carry no colour and no decoration —
+   only width, spacing and grid behaviour, so any page can use them
+   ========================================================================== */
+
+/* ── CONTAINER ─────────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ── SECTION ───────────────────────────────────────────────────────────
+   Vertical rhythm was duplicated as `padding: clamp(5rem,10vw,8rem) 0` in
+   roughly a dozen places. It is one class now.                            */
+.section {
+  padding-block: var(--section-y);
+}
+
+.section--tall  { padding-block: var(--section-y-lg); }
+
+.section--light { background: var(--surface); }
+
+.section--alt   { background: var(--surface-alt); }
+
+.section--raised{ background: var(--surface-raised); }
+
+.section--dark  { background: var(--surface-invert); }
+
+/* ── SPLIT ─────────────────────────────────────────────────────────────
+   The two-column "image beside text" pattern used by Home, About and
+   Gallery. Collapses to one column at the md breakpoint.                  */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--split-gap);
+  align-items: center;
+}
+
+.split--narrow-first { grid-template-columns: 1fr 1.4fr; }
+
+.split--wide-first   { grid-template-columns: 1.4fr 1fr; }
+
+/* Reverses the visual order without touching the DOM order, so screen
+   readers and keyboard tabbing still follow the source. */
+.split--reverse > *:first-child { order: 2; }
+
+/* ── AUTO GRID ─────────────────────────────────────────────────────────
+   Card grids. The `repeat(3,1fr)` + two media queries pattern was repeated
+   in four files; auto-fit handles it with no breakpoints at all.          */
+.grid {
+  display: grid;
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+/* ── CENTRED INTRO COPY ────────────────────────────────────────────────── */
+.section-intro {
+  max-width: var(--measure);
+  margin: 0 auto var(--space-2xl);
+  text-align: center;
+  color: var(--text-mid);
+  line-height: var(--lh-body);
+}
+
+/* Centred button row beneath a grid */
+.section-actions {
+  margin-top: var(--space-xl);
+  text-align: center;
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .split,
+  .split--narrow-first,
+  .split--wide-first {
+    grid-template-columns: 1fr;
+  }
+  /* Once stacked, the reversal would put the image below the text on every
+     screen; restore source order so the image always leads. */
+  .split--reverse > *:first-child { order: 0; }
+}

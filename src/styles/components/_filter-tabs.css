@@ -1,0 +1,97 @@
+/* ==========================================================================
+   FILTER TABS
+   Category tab bar above a card grid. Shared by Gallery and Shop
+   ========================================================================== */
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--cream-dark);
+  position: sticky;
+  /* Was top: 0, which slid the bar underneath the fixed navbar. */
+  top: var(--nav-height);
+  z-index: var(--z-sticky);
+  padding: 1rem 0;
+}
+
+.filter-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.filter-bar__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.filter-bar__tabs {
+  display: flex;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.filter-tab {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.5rem 1.25rem;
+  background: none;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--text-mid);
+  transition: var(--transition);
+}
+
+.filter-tab:hover {
+  color: var(--navy);
+  background: var(--cream);
+}
+
+.filter-tab--active {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+
+.filter-bar__count {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+@media (max-width: 1024px) {
+  .filter-bar__tabs {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-bar__inner {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  .filter-bar__label { display: none;
+  }
+  .filter-bar__count { width: 100%; margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-bar__tabs {
+    flex-wrap: wrap;
+  }
+  .filter-tab {
+    flex: 1;
+    text-align: center;
+  }
+}

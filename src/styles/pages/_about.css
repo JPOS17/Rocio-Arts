@@ -1,71 +1,29 @@
-.about-page {
-  font-family: var(--font-body);
-  background: var(--cream);
-  color: var(--text-dark);
-  overflow-x: hidden;
-}
+/* ==========================================================================
+   ABOUT PAGE
+   ========================================================================== */
 
-/* ── EDITORIAL HERO ── */
-.about-page .about-hero {
-  position: relative;
-  height: 75svh;
-  min-height: 520px;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-}
-
-.about-page .about-hero__bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center 20%;
-  transform: scale(1.04);
-  animation: heroZoom 16s ease-out forwards;
-}
-
-.about-page .about-hero__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
+/* ── HERO ── (structure lives in components/_page-hero.css) */
+.about-page .page-hero {
+  --hero-height: 75svh;
+  --hero-min-height: 520px;
+  --hero-focus: center 20%;
+  --hero-zoom-duration: 16s;
+  --hero-content-pad: clamp(3rem, 6vw, 5rem);
+  --hero-overlay: linear-gradient(
     to top,
-    rgba(26, 35, 64, 0.85) 0%,
-    rgba(26, 35, 64, 0.35) 55%,
-    rgba(26, 35, 64, 0.15) 100%
+    rgba(var(--navy-rgb), 0.85) 0%,
+    rgba(var(--navy-rgb), 0.35) 55%,
+    rgba(var(--navy-rgb), 0.15) 100%
   );
 }
 
-.about-page .about-hero__content {
-  position: relative;
-  z-index: 2;
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-  animation: fadeUp 1s 0.2s both;
+.about-page {
+  background: var(--surface);
 }
-
-.about-page .about-hero__name {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 300;
-  color: var(--white);
-  line-height: 1.05;
-  letter-spacing: 0.01em;
-  margin-bottom: 0.6rem;
-}
-
-.about-page .about-hero__title {
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(248, 244, 239, 0.65);
-}
-
 
 /* ── STORY ── */
-
 .about-page .about-story {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--white);
 }
 
@@ -79,7 +37,7 @@
   font-weight: 400;
   color: var(--navy);
   margin-bottom: 2rem;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .about-page .about-body {
@@ -101,7 +59,6 @@
   margin: 2.5rem 0;
   line-height: 1.6;
 }
-
 
 /* ── CREDENTIALS ── */
 .about-page .credentials {
@@ -148,11 +105,9 @@
   color: var(--text-mid);
 }
 
-
 /* ── VALUES ── */
-
 .about-page .values {
-  padding: clamp(5rem, 10vw, 8rem) 0;
+  padding-block: var(--section-y);
   background: var(--navy);
   position: relative;
   overflow: hidden;
@@ -180,7 +135,7 @@
 
 .about-page .value-item {
   padding: 2rem;
-  border: 1px solid rgba(248, 244, 239, 0.1);
+  border: 1px solid var(--border-on-dark);
   border-radius: var(--radius);
   transition: border-color var(--transition), background var(--transition);
 }
@@ -200,13 +155,11 @@
 
 .about-page .value-item p {
   font-size: 0.95rem;
-  line-height: 1.8;
-  color: rgba(248, 244, 239, 0.7);
+  line-height: var(--lh-body);
+  color: var(--text-on-dark-muted);
 }
 
-
 /* ── CTA ── */
-
 .about-page .about-cta {
   padding: clamp(5rem, 10vw, 7rem) 0;
   background: var(--cream-dark);
@@ -218,22 +171,19 @@
 
 .about-page .about-cta__heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-h2);
   font-weight: 400;
   color: var(--navy);
   margin-bottom: 1rem;
-  line-height: 1.2;
+  line-height: var(--lh-tight);
 }
 
 .about-page .about-cta__sub {
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: var(--lh-body);
   color: var(--text-mid);
   margin-bottom: 2rem;
 }
-
-
-/* ── RESPONSIVE ── */
 
 @media (max-width: 1024px) {
   .about-page .cred-grid {
@@ -242,19 +192,8 @@
 }
 
 @media (max-width: 768px) {
-  .about-page .about-hero {
-    height: 60svh;
-    min-height: 420px;
-  }
-
   .about-page .values__grid,
   .about-page .cred-grid {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-page .about-hero__name {
-    font-size: clamp(2.5rem, 10vw, 3.5rem);
   }
 }

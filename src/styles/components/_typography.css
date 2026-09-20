@@ -1,0 +1,65 @@
+/* ==========================================================================
+   TYPOGRAPHIC COMPONENTS
+   Named text styles reused across pages
+   ========================================================================== */
+
+/* ── EYEBROW / SECTION LABEL ───────────────────────────────────────────── */
+.section-label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: var(--space-sm);
+}
+
+.section-label--light { color: var(--gold-light); }
+
+/* ── SECTION HEADING ───────────────────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-3xl);
+}
+
+.section-heading--light { color: var(--cream); }
+
+/* ── DISPLAY HEADING ───────────────────────────────────────────────────
+   The larger serif heading used at the top of each major block.           */
+.display-heading {
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: var(--lh-tight);
+  margin-bottom: var(--space-lg);
+}
+
+.display-heading--light  { color: var(--white); font-weight: 300; }
+
+/* ── BODY COPY ─────────────────────────────────────────────────────────── */
+.prose {
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+  color: var(--text-mid);
+  margin-bottom: var(--space-lg);
+}
+
+.prose--light { color: var(--text-on-dark); }
+
+/* ── PULL QUOTE ────────────────────────────────────────────────────────── */
+.pull-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--fs-lg);
+  font-weight: 300;
+  color: var(--gold-light);
+  border-left: 2px solid var(--gold);
+  padding-left: var(--space-md);
+  line-height: var(--lh-snug);
+}

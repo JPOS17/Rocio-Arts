@@ -1,5 +1,4 @@
-import "../styles/Global.css";
-import "../styles/Gallery.css";
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 
 // Originals
@@ -72,21 +71,18 @@ const Gallery = () => {
   return (
     <div className="gallery-page">
       {/* ── HERO ── */}
-      <section className="gallery-hero">
+      <section className="page-hero">
         <div
-          className="gallery-hero__bg"
-          style={{ backgroundImage: `url(${eucharistic})` }}
+          className="page-hero__bg"
+          style={{ "--bg-image": `url(${eucharistic})` } as CSSProperties}
         />
-        <div className="gallery-hero__overlay" />
-        <div className="gallery-hero__content">
-          <p className="hero__eyebrow">Rocio Ortiz Studio</p>
-          <h1 className="gallery-hero__headline">The Gallery</h1>
-          <p className="gallery-hero__sub">
+        <div className="page-hero__overlay" />
+        <div className="page-hero__content">
+          <p className="page-hero__eyebrow">Rocio Ortiz Studio</p>
+          <h1 className="page-hero__headline">The Gallery</h1>
+          <p className="page-hero__sub">
             Original paintings and prints — each one born in prayer
           </p>
-        </div>
-        <div className="hero__scroll-hint">
-          <span />
         </div>
       </section>
 

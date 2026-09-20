@@ -1,8 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import "../styles/Global.css";
-import "../styles/Gallery.css";
 
 // Illustrations (sold as prints)
 import holyfamily from "../assets/illustrations/holyfamily.png";
@@ -337,50 +341,47 @@ const Shop = () => {
       : shopItems.filter((item) => item.category === active);
 
   return (
-    <div className="gallery-page">
+    <div className="shop-page">
       {/* ── HERO ── */}
-      <section className="gallery-hero">
+      <section className="page-hero">
         <div
-          className="gallery-hero__bg"
-          style={{ backgroundImage: `url(${mary_jesus_pastel})` }}
+          className="page-hero__bg"
+          style={{ "--bg-image": `url(${mary_jesus_pastel})` } as CSSProperties}
         />
-        <div className="gallery-hero__overlay" />
-        <div className="gallery-hero__content">
-          <p className="hero__eyebrow">Rocio Ortiz Studio</p>
-          <h1 className="gallery-hero__headline">Shop</h1>
-          <p className="gallery-hero__sub">
+        <div className="page-hero__overlay" />
+        <div className="page-hero__content">
+          <p className="page-hero__eyebrow">Rocio Ortiz Studio</p>
+          <h1 className="page-hero__headline">Shop</h1>
+          <p className="page-hero__sub">
             Bring a piece of the studio into your home
           </p>
-        </div>
-        <div className="hero__scroll-hint">
-          <span />
         </div>
       </section>
 
       {/* ── FILTER BAR ── */}
-      <section className="gallery-filters">
-        <div className="container gallery-filters__inner">
-          <div className="gallery-filters__tabs" role="tablist">
+      <section className="filter-bar">
+        <div className="container filter-bar__inner">
+          <div className="filter-bar__tabs" role="tablist">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
                 role="tab"
                 aria-selected={active === cat}
-                className={`gallery-tab${active === cat ? " gallery-tab--active" : ""}`}
+                className={`filter-tab${active === cat ? " filter-tab--active" : ""}`}
                 onClick={() => setActive(cat)}
               >
                 {cat}
               </button>
             ))}
           </div>
-          <p className="gallery-filters__count">
+          <p className="filter-bar__count">
             {filtered.length} {filtered.length === 1 ? "item" : "items"}
           </p>
         </div>
       </section>
 
       {/* ── GRID ── */}
-      <section className="gallery-grid-section">
+      <section className="card-grid-section">
         <div className="container">
           {active === "Digital Custom Portraits" && (
             <div className="portraits-cta-banner">
@@ -413,7 +414,7 @@ const Shop = () => {
           )}
 
           {filtered.length > 0 ? (
-            <div className="gallery-grid">
+            <div className="card-grid">
               {filtered.map((item, i) => {
                 const photos = item.images ?? [item.img];
                 const current = photoIndex[item.id] ?? 0;
@@ -423,7 +424,7 @@ const Shop = () => {
                   <article
                     key={`${active}-${item.id}`}
                     className="art-card"
-                    style={{ animationDelay: `${i * 0.06}s` }}
+                    style={{ "--card-index": i } as CSSProperties}
                   >
                     <div className="art-card__img-wrap">
                       <button
@@ -515,7 +516,7 @@ const Shop = () => {
         const label = openItem.viewLabels?.[current];
         return (
           <div
-            className="shop-lightbox"
+            className="lightbox"
             role="dialog"
             aria-modal="true"
             aria-label={openItem.title}
@@ -526,7 +527,7 @@ const Shop = () => {
             <button
               ref={closeBtnRef}
               type="button"
-              className="shop-lightbox__close"
+              className="lightbox__close"
               aria-label="Close"
               onClick={() => setOpenId(null)}
             >
@@ -536,7 +537,7 @@ const Shop = () => {
             {photos.length > 1 && (
               <button
                 type="button"
-                className="shop-lightbox__arrow shop-lightbox__arrow--prev"
+                className="lightbox__arrow lightbox__arrow--prev"
                 aria-label="Previous photo"
                 onClick={() => stepPhoto(openItem, -1)}
               >
@@ -544,15 +545,15 @@ const Shop = () => {
               </button>
             )}
 
-            <figure className="shop-lightbox__figure">
+            <figure className="lightbox__figure">
               <img
-                className="shop-lightbox__img"
+                className="lightbox__img"
                 src={photos[current] ?? openItem.img}
                 alt={label ? `${openItem.title} — ${label}` : openItem.title}
               />
-              <figcaption className="shop-lightbox__caption">
-                <span className="shop-lightbox__title">{openItem.title}</span>
-                <span className="shop-lightbox__meta">
+              <figcaption className="lightbox__caption">
+                <span className="lightbox__title">{openItem.title}</span>
+                <span className="lightbox__meta">
                   {openItem.medium}
                   {photos.length > 1 &&
                     ` · ${label ? `${label} · ` : ""}${current + 1} of ${photos.length}`}
@@ -563,7 +564,7 @@ const Shop = () => {
             {photos.length > 1 && (
               <button
                 type="button"
-                className="shop-lightbox__arrow shop-lightbox__arrow--next"
+                className="lightbox__arrow lightbox__arrow--next"
                 aria-label="Next photo"
                 onClick={() => stepPhoto(openItem, 1)}
               >

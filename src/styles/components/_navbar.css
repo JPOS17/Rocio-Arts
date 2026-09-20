@@ -1,16 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lato:wght@300;400;700&display=swap');
-
-/* ── SCOPED TOKENS ── */
-.nav {
-  --nav-cream:        #f8f4ef;
-  --nav-navy:         #1a2340;
-  --nav-navy-light:   #2b3a5e;
-  --nav-gold:         #b9904a;
-  --nav-gold-light:   #d4b483;
-  --nav-radius:       2px;
-  --nav-font-display: 'Cormorant Garamond', Georgia, serif;
-  --nav-font-body:    'Lato', sans-serif;
-}
+/* ==========================================================================
+   NAVBAR
+   Fixed header with a transparent-over-hero mode, a solid scrolled mode and
+   a mobile drawer
+   ========================================================================== */
 
 /* ── NAVBAR SHELL ── */
 .nav {
@@ -18,9 +10,9 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
-  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  z-index: var(--z-nav);
+  transition: background 0.4s var(--ease),
+              box-shadow 0.4s var(--ease),
               backdrop-filter 0.4s ease;
 }
 
@@ -33,19 +25,19 @@
 /* Solid mode — non-hero pages or once scrolled */
 .nav--solid,
 .nav--scrolled {
-  background: var(--nav-navy);
-  box-shadow: 0 2px 24px rgba(26, 35, 64, 0.18);
+  background: var(--navy);
+  box-shadow: var(--shadow-nav);
 }
 
 /* ── INNER ROW ── */
 .nav__inner {
-  max-width: 1200px;
+  max-width: var(--content-max);
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  padding-inline: var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 70px;
+  height: var(--nav-height);
 }
 
 /* ── BRAND ── */
@@ -56,24 +48,25 @@
   gap: 0.35rem;
   transition: opacity 0.25s ease;
 }
+
 .nav__brand:hover { opacity: 0.82; }
 
 .nav__brand-name {
-  font-family: var(--nav-font-display);
+  font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 400;
-  color: var(--nav-cream);
+  color: var(--cream);
   letter-spacing: 0.02em;
   line-height: 1;
 }
 
 .nav__brand-sub {
-  font-family: var(--nav-font-body);
+  font-family: var(--font-body);
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--nav-gold-light);
+  color: var(--gold-light);
 }
 
 /* ── DESKTOP LINKS ── */
@@ -84,13 +77,13 @@
 }
 
 .nav__link {
-  font-family: var(--nav-font-body);
+  font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba(248, 244, 239, 0.75);
+  color: var(--text-on-dark-muted);
   position: relative;
   padding-bottom: 3px;
   transition: color 0.25s ease;
@@ -103,13 +96,13 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--nav-gold);
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--gold);
+  transition: width 0.3s var(--ease);
 }
 
 .nav__link:hover,
 .nav__link.active {
-  color: var(--nav-cream);
+  color: var(--cream);
 }
 
 .nav__link:hover::after,
@@ -120,17 +113,19 @@
 /* Contact — styled as a subtle outlined button */
 .nav__link--cta {
   padding: 0.55rem 1.35rem 0.55rem;
-  border: 1.5px solid rgba(185, 144, 74, 0.5);
-  color: var(--nav-gold-light);
-  border-radius: var(--nav-radius);
+  border: 1.5px solid var(--border-gold);
+  color: var(--gold-light);
+  border-radius: var(--radius);
   transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
+
 .nav__link--cta::after { display: none; }
+
 .nav__link--cta:hover,
 .nav__link--cta.active {
-  background: rgba(185, 144, 74, 0.12);
-  border-color: var(--nav-gold);
-  color: var(--nav-gold-light);
+  background: var(--wash-gold);
+  border-color: var(--gold);
+  color: var(--gold-light);
 }
 
 /* ── HAMBURGER ── */
@@ -150,9 +145,9 @@
 .nav__hamburger span {
   display: block;
   height: 1.5px;
-  background: var(--nav-cream);
+  background: var(--cream);
   border-radius: 2px;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+  transition: transform 0.35s var(--ease),
               opacity 0.25s ease;
   transform-origin: center;
 }
@@ -161,10 +156,12 @@
 .nav--open .nav__hamburger span:nth-child(1) {
   transform: translateY(6.5px) rotate(45deg);
 }
+
 .nav--open .nav__hamburger span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
+
 .nav--open .nav__hamburger span:nth-child(3) {
   transform: translateY(-6.5px) rotate(-45deg);
 }
@@ -173,34 +170,34 @@
 .nav__drawer {
   overflow: hidden;
   max-height: 0;
-  background: var(--nav-navy);
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  background: var(--navy);
+  transition: max-height 0.4s var(--ease),
               border-color 0.4s ease;
   border-top: 1px solid transparent;
 }
 
 .nav--open .nav__drawer {
   max-height: 320px;
-  border-top-color: rgba(248, 244, 239, 0.08);
+  border-top-color: var(--border-on-dark);
 }
 
 .nav__drawer-links {
   display: flex;
   flex-direction: column;
-  padding: 1.5rem clamp(1.5rem, 5vw, 4rem) 2rem;
+  padding: 1.5rem var(--gutter) 2rem;
   gap: 0;
 }
 
 .nav__drawer-link {
-  font-family: var(--nav-font-body);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-decoration: none;
-  color: rgba(248, 244, 239, 0.65);
+  color: var(--text-on-dark-muted);
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(248, 244, 239, 0.06);
+  border-bottom: 1px solid var(--border-on-dark);
   transition: color 0.25s ease, padding-left 0.25s ease;
 }
 
@@ -210,12 +207,12 @@
 
 .nav__drawer-link:hover,
 .nav__drawer-link.active {
-  color: var(--nav-cream);
+  color: var(--cream);
   padding-left: 0.5rem;
 }
 
 .nav__drawer-link.active {
-  color: var(--nav-gold-light);
+  color: var(--gold-light);
 }
 
 /* ── RESPONSIVE ── */
