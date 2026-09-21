@@ -3,7 +3,7 @@ import Stripe from "stripe";
 import {
   priceForId,
   requiresShippingForId,
-} from "../src/data/checkoutCatalog";
+} from "../src/data/checkoutCatalog.js";
 
 // apiVersion is intentionally left unset — Stripe defaults to whatever
 // version the installed `stripe` package supports.
