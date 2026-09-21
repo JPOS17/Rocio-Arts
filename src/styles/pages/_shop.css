@@ -69,6 +69,20 @@
   padding: 3rem 0;
 }
 
+/* ── CHECKOUT ERROR ──
+   Shown when the Stripe checkout request fails (network issue, server
+   misconfiguration, etc) */
+.shop-page .shop-checkout-error {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--error);
+  background: color-mix(in srgb, var(--error) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error) 30%, transparent);
+  border-radius: var(--radius);
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
 /* ── CHILDREN'S ACTIVITIES ── */
 .shop-page .shop-tab-intro {
   text-align: center;

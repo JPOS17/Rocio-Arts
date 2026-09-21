@@ -29,6 +29,37 @@ const Shop = () => {
 
   const [active, setActive] = useState<ShopCategory>(initialCategory);
 
+  // Which item's Buy button is mid-request, and any error from the last
+  // attempt (shown near the grid, cleared on the next try).
+  const [checkingOutId, setCheckingOutId] = useState<number | null>(null);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  // Calls the /api/checkout serverless function, which creates a Stripe
+  // Checkout Session and returns its URL. The price itself is looked up
+  // server-side by item id.
+  const startCheckout = async (item: ShopItem) => {
+    setCheckoutError(null);
+    setCheckingOutId(item.id);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ itemId: item.id, title: item.title }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) {
+        throw new Error(data.error ?? "Checkout failed");
+      }
+      window.location.href = data.url;
+    } catch (err) {
+      console.error(err);
+      setCheckoutError(
+        "Something went wrong starting checkout. Please try again, or use the contact form.",
+      );
+      setCheckingOutId(null);
+    }
+  };
+
   // Which photo is showing on each card (children's items have two).
   const [photoIndex, setPhotoIndex] = useState<Record<number, number>>({});
 
@@ -126,6 +157,12 @@ const Shop = () => {
       {/* ── GRID ── */}
       <section className="card-grid-section">
         <div className="container">
+          {checkoutError && (
+            <p className="shop-checkout-error" role="alert">
+              {checkoutError}
+            </p>
+          )}
+
           {active === "Digital Custom Portraits" && (
             <div className="portraits-cta-banner">
               <div className="portraits-cta-banner__text">
@@ -231,12 +268,25 @@ const Shop = () => {
                       )}
                       {(item.price || isKids) && (
                         <div className="art-card__actions">
-                          <Link
-                            to={getBuyLink(item)}
-                            className="btn btn--dark btn--sm art-card__btn"
-                          >
-                            {item.price ? "Buy" : "Inquire"}
-                          </Link>
+                          {item.price ? (
+                            <button
+                              type="button"
+                              className="btn btn--dark btn--sm art-card__btn"
+                              onClick={() => startCheckout(item)}
+                              disabled={checkingOutId === item.id}
+                            >
+                              {checkingOutId === item.id
+                                ? "Redirecting…"
+                                : "Buy"}
+                            </button>
+                          ) : (
+                            <Link
+                              to={getBuyLink(item)}
+                              className="btn btn--dark btn--sm art-card__btn"
+                            >
+                              Inquire
+                            </Link>
+                          )}
                         </div>
                       )}
                     </div>

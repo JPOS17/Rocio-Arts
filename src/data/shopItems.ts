@@ -1,4 +1,5 @@
 import type { ArtworkBase } from "./types";
+import { displayPrice } from "./checkoutCatalog";
 
 // Illustrations (sold as prints)
 import holyfamily from "../assets/illustrations/holyfamily.png";
@@ -43,10 +44,6 @@ export type ShopCategory =
 
 export const KIDS = "Children's Activities" as const;
 
-// SET YOUR PRICES HERE
-const PUZZLE_PRICE = "";
-const COLORING_BOOK_PRICE = "";
-
 export interface ShopItem extends ArtworkBase {
   category: Exclude<ShopCategory, "All">;
   images?: string[];
@@ -70,7 +67,7 @@ export const shopItems: ShopItem[] = [
     title: "Flight into Egypt",
     medium: "Digital watercolor print",
     size: '10" x 8"',
-    price: "$9.99",
+    price: displayPrice(1),
     category: "Watercolor",
   },
   {
@@ -79,7 +76,7 @@ export const shopItems: ShopItem[] = [
     title: "Our Lady of Expectation",
     medium: "Digital watercolor print",
     size: '10" x 8"',
-    price: "$9.99",
+    price: displayPrice(2),
     category: "Watercolor",
   },
   {
@@ -88,7 +85,7 @@ export const shopItems: ShopItem[] = [
     title: "The Good Shepherd",
     medium: "Digital watercolor print",
     size: '10" x 8"',
-    price: "$9.99",
+    price: displayPrice(3),
     category: "Watercolor",
   },
   {
@@ -97,7 +94,7 @@ export const shopItems: ShopItem[] = [
     title: "Madonna & Child",
     medium: "Digital watercolor print",
     size: '10" x 8"',
-    price: "$9.99",
+    price: displayPrice(4),
     category: "Watercolor",
   },
   {
@@ -106,7 +103,7 @@ export const shopItems: ShopItem[] = [
     title: "Our Lady of Grace",
     medium: "Digital Pastel  print",
     size: '10" x 8"',
-    price: "$9.99",
+    price: displayPrice(5),
     category: "Pastel",
   },
   {
@@ -177,7 +174,7 @@ export const shopItems: ShopItem[] = [
     img: coloring_book,
     title: "Coloring Book with the Saints",
     medium: "Coloring book",
-    price: COLORING_BOOK_PRICE || undefined,
+    price: displayPrice(15),
     category: KIDS,
     images: [coloring_book, coloring_book1],
     viewLabels: ["Cover", "In use"],
@@ -188,7 +185,7 @@ export const shopItems: ShopItem[] = [
     title: "The Good Shepherd Puzzle",
     medium: "24-piece jigsaw puzzle",
     size: "Ages 2+",
-    price: PUZZLE_PRICE || undefined,
+    price: displayPrice(16),
     category: KIDS,
     images: [good_shepherd, good_shepherd1],
     viewLabels: ["Box", "Puzzle"],
@@ -199,7 +196,7 @@ export const shopItems: ShopItem[] = [
     title: "The Nativity of Our Lord Puzzle",
     medium: "24-piece jigsaw puzzle",
     size: "Ages 2+",
-    price: PUZZLE_PRICE || undefined,
+    price: displayPrice(17),
     category: KIDS,
     images: [nativity, nativity1],
     viewLabels: ["Box", "Puzzle"],
@@ -210,7 +207,7 @@ export const shopItems: ShopItem[] = [
     title: "Our Lady of Guadalupe Puzzle",
     medium: "24-piece jigsaw puzzle",
     size: "Ages 2+",
-    price: PUZZLE_PRICE || undefined,
+    price: displayPrice(18),
     category: KIDS,
     images: [our_lady_of_guada, our_lady_of_guada1],
     viewLabels: ["Box", "Puzzle"],
@@ -221,7 +218,7 @@ export const shopItems: ShopItem[] = [
     title: "St. Joseph Puzzle",
     medium: "24-piece jigsaw puzzle",
     size: "Ages 2+",
-    price: PUZZLE_PRICE || undefined,
+    price: displayPrice(19),
     category: KIDS,
     images: [st_joseph, st_joseph1],
     viewLabels: ["Box", "Puzzle"],
@@ -232,7 +229,7 @@ export const shopItems: ShopItem[] = [
     title: "St. Michael the Archangel Puzzle",
     medium: "24-piece jigsaw puzzle",
     size: "Ages 2+",
-    price: PUZZLE_PRICE || undefined,
+    price: displayPrice(20),
     category: KIDS,
     images: [st_michael_archangel, st_michael_archangel1],
     viewLabels: ["Box", "Puzzle"],

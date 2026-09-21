@@ -4,6 +4,8 @@ import About from "../pages/About";
 import Gallery from "../pages/Gallery";
 import Shop from "../pages/Shop";
 import Contact from "../pages/Contact";
+import CheckoutSuccess from "../pages/CheckoutSuccess";
+import CheckoutCancel from "../pages/CheckoutCancel";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +15,8 @@ const AppRoutes = () => {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/checkout/success" element={<CheckoutSuccess />} />
+      <Route path="/checkout/cancel" element={<CheckoutCancel />} />
     </Routes>
   );
 };
