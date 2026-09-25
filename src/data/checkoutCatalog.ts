@@ -26,7 +26,7 @@ export const checkoutCatalog: CatalogEntry[] = [
   { id: 2, priceCents: 999, requiresShipping: true }, // Our Lady of Expectation
   { id: 3, priceCents: 999, requiresShipping: true }, // The Good Shepherd
   { id: 4, priceCents: 999, requiresShipping: true }, // Madonna & Child
-  { id: 5, priceCents: 999, requiresShipping: true }, // Our Lady of Grace
+  // { id: 5, priceCents: 999, requiresShipping: true }, // Our Lady of Grace
 
   // ── Children's Activities ──
   // Not listed yet: PUZZLE_PRICE / COLORING_BOOK_PRICE in shopItems.ts

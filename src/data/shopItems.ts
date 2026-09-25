@@ -38,7 +38,7 @@ import st_michael_archangel1 from "../assets/children_misc/st_michael_archangel1
 export type ShopCategory =
   | "All"
   | "Watercolor"
-  | "Pastel"
+  // | "Pastel"
   | "Digital Custom Portraits"
   | "Children's Activities";
 
@@ -97,15 +97,15 @@ export const shopItems: ShopItem[] = [
     price: displayPrice(4),
     category: "Watercolor",
   },
-  {
-    id: 5,
-    img: mary_jesus_pastel,
-    title: "Our Lady of Grace",
-    medium: "Digital Pastel  print",
-    size: '10" x 8"',
-    price: displayPrice(5),
-    category: "Pastel",
-  },
+  // {
+  //   id: 5,
+  //   img: mary_jesus_pastel,
+  //   title: "Our Lady of Grace",
+  //   medium: "Digital Pastel  print",
+  //   size: '10" x 8"',
+  //   price: displayPrice(5),
+  //   category: "Pastel",
+  // },
   {
     id: 13,
     img: our_ladys_blessing,
@@ -239,7 +239,7 @@ export const shopItems: ShopItem[] = [
 export const CATEGORIES: ShopCategory[] = [
   "All",
   "Watercolor",
-  "Pastel",
+  // "Pastel",
   KIDS,
   "Digital Custom Portraits",
 ];

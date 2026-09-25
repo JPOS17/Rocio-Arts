@@ -75,8 +75,7 @@ const Home = () => {
             into prayerful moments
           </h1>
           <p className="page-hero__sub">
-            Original paintings and prints created to deepen your connection with
-            God
+            Art made from prayer, for the moments when words just aren't enough.
           </p>
           <div className="page-hero__ctas">
             <Link to="/gallery" className="btn btn--outline-light">
@@ -101,11 +100,12 @@ const Home = () => {
             <span className="section-label">The Artist</span>
             <h2 className="intro__heading">Hi, I'm Rocio</h2>
             <p className="intro__body">
-              A Catholic artist and illustrator creating art that celebrates the beauty of our faith and the stories that bring us closer to God.
+              A Catholic artist who believes beauty is one of God's favorite languages.
+              I create artwork rooted in faith          
             </p>
             <p className="intro__body">
-              From meaningful artwork to joyful designs for Christian families and homes, my hope is that each piece invites you to pause, reflect, and carry a little more of God’s love into your everyday life.
-            </p>
+              Pieces for the quiet moments, the big ones, and everything in between. 
+              Whether it's a print for your prayer corner or a design that makes your home feel a little more like heaven, my hope is simple: that something here brings you a little closer to God            </p>
             <Link to="/about" className="btn btn--dark">
               Read My Story
             </Link>
